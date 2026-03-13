@@ -18,9 +18,9 @@
 }
 
 
-/* ------------------------------------------------ */
-/* BASE                                             */
-/* ------------------------------------------------ */
+/* ================================================ */
+/* 1. BASE / RESET                                  */
+/* ================================================ */
 
 *{
   box-sizing:border-box;
@@ -54,9 +54,9 @@ a{
 }
 
 
-/* ------------------------------------------------ */
-/* HEADER                                           */
-/* ------------------------------------------------ */
+/* ================================================ */
+/* 2. SITE HEADER                                   */
+/* ================================================ */
 
 .site-header{
   position:sticky;
@@ -71,19 +71,34 @@ a{
   max-width:var(--max-width);
   margin:auto;
   padding:18px 20px;
-
   display:flex;
   justify-content:space-between;
   align-items:center;
   gap:20px;
 }
 
+
+/* ----------------------------------------------- */
+/* 2A. BRAND / LOGO                               */
+/* ----------------------------------------------- */
+
 .brand{
-  font-size:13px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  white-space:nowrap;
+  display:flex;
+  align-items:center;
+  flex-shrink:0;
 }
+
+.brand img{
+  display:block;
+  width:auto;
+  height:28px;
+  max-width:none;
+}
+
+
+/* ----------------------------------------------- */
+/* 2B. MAIN NAVIGATION                            */
+/* ----------------------------------------------- */
 
 .main-nav{
   display:flex;
@@ -107,9 +122,9 @@ a{
 }
 
 
-/* ------------------------------------------------ */
-/* PAGE STRUCTURE                                   */
-/* ------------------------------------------------ */
+/* ================================================ */
+/* 3. PAGE LAYOUT                                   */
+/* ================================================ */
 
 .page{
   max-width:var(--max-width);
@@ -142,9 +157,9 @@ a{
 }
 
 
-/* ------------------------------------------------ */
-/* ARCHIVE SECTIONS                                 */
-/* ------------------------------------------------ */
+/* ================================================ */
+/* 4. ARCHIVE SECTIONS                              */
+/* ================================================ */
 
 .archive-year{
   padding:40px 0 10px;
@@ -162,10 +177,19 @@ a{
   letter-spacing:.03em;
 }
 
+.about-copy,
+.contact-copy{
+  max-width:720px;
+  margin:0;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.7;
+}
 
-/* ------------------------------------------------ */
-/* VIDEO GRID                                       */
-/* ------------------------------------------------ */
+
+/* ================================================ */
+/* 5. VIDEO GRID                                    */
+/* ================================================ */
 
 .project-grid{
   display:grid;
@@ -177,12 +201,9 @@ a{
   display:block;
   position:relative;
   overflow:hidden;
-
   border:1px solid var(--line);
   background:#0b0b0b;
-
   cursor:pointer;
-
   transition:
     transform var(--transition),
     box-shadow var(--transition),
@@ -207,7 +228,6 @@ a{
   width:100%;
   height:100%;
   object-fit:cover;
-
   transition:
     transform .45s ease,
     opacity var(--transition),
@@ -243,23 +263,19 @@ a{
 }
 
 
-/* ------------------------------------------------ */
-/* PLAY OVERLAY                                     */
-/* ------------------------------------------------ */
+/* ================================================ */
+/* 6. PLAY OVERLAY                                  */
+/* ================================================ */
 
 .project-overlay{
   position:absolute;
   inset:0;
-
   display:grid;
   place-items:center;
-
   pointer-events:none;
-
   background:rgba(0,0,0,0);
   backdrop-filter:blur(0px);
   -webkit-backdrop-filter:blur(0px);
-
   transition:
     background var(--transition),
     backdrop-filter var(--transition),
@@ -276,18 +292,14 @@ a{
 .play-button{
   width:var(--play-size);
   height:var(--play-size);
-
   border-radius:var(--play-radius);
   background:var(--play-bg);
   border:var(--play-border);
   box-shadow:var(--play-shadow);
-
   display:grid;
   place-items:center;
-
   opacity:0;
   transform:scale(.88);
-
   transition:
     opacity var(--transition),
     transform var(--transition);
@@ -307,30 +319,24 @@ a{
 }
 
 
-/* ------------------------------------------------ */
-/* LIGHTBOX                                         */
-/* ------------------------------------------------ */
+/* ================================================ */
+/* 7. LIGHTBOX                                      */
+/* ================================================ */
 
 .video-lightbox{
   position:fixed;
   inset:0;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   padding:28px;
-
   background:rgba(0,0,0,0.1);
   backdrop-filter:blur(0px);
   -webkit-backdrop-filter:blur(0px);
-
   opacity:0;
   visibility:hidden;
   pointer-events:none;
-
   z-index:9999;
-
   transition:
     opacity 300ms ease,
     visibility 300ms ease,
@@ -343,7 +349,6 @@ a{
   opacity:1;
   visibility:visible;
   pointer-events:auto;
-
   background:rgba(0,0,0,0.82);
   backdrop-filter:blur(16px);
   -webkit-backdrop-filter:blur(16px);
@@ -358,14 +363,10 @@ a{
   position:relative;
   width:100%;
   aspect-ratio:16/9;
-
   background:#000;
-
   border:1px solid rgba(255,255,255,0.12);
   box-shadow:0 40px 100px rgba(0,0,0,0.55);
-
   overflow:hidden;
-
   opacity:0;
   transition:opacity 220ms ease;
 }
@@ -384,11 +385,9 @@ a{
 .video-poster{
   position:absolute;
   inset:0;
-
   background-position:center;
   background-size:cover;
   background-repeat:no-repeat;
-
   opacity:1;
   transition:opacity 220ms ease;
 }
@@ -401,26 +400,18 @@ a{
   position:absolute;
   top:-14px;
   right:-14px;
-
   width:46px;
   height:46px;
-
   border-radius:999px;
   border:1px solid rgba(255,255,255,0.18);
-
   background:rgba(0,0,0,0.85);
   color:#fff;
-
   font:inherit;
   font-size:16px;
-
   cursor:pointer;
-
   display:grid;
   place-items:center;
-
   z-index:4;
-
   transition:
     transform var(--transition),
     background var(--transition);
@@ -431,10 +422,49 @@ a{
   background:rgba(20,20,20,0.95);
 }
 
+.video-fallback{
+  position:absolute;
+  right:16px;
+  bottom:16px;
+  z-index:3;
+}
 
-/* ------------------------------------------------ */
-/* HOME PAGE                                        */
-/* ------------------------------------------------ */
+.video-fallback a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:42px;
+  padding:0 16px;
+  border:1px solid rgba(255,255,255,0.18);
+  background:rgba(0,0,0,0.72);
+  color:#fff;
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.thumb-clone{
+  position:fixed;
+  z-index:10001;
+  overflow:hidden;
+  border-radius:0;
+  pointer-events:none;
+  transform-origin:center center;
+  box-shadow:0 24px 70px rgba(0,0,0,0.42);
+  background:#111;
+}
+
+.thumb-clone img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+
+/* ================================================ */
+/* 8. HOME PAGE                                     */
+/* ================================================ */
 
 .home-main{
   max-width:900px;
@@ -467,10 +497,8 @@ a{
 .home-link{
   display:block;
   padding:22px;
-
   border:1px solid var(--line);
   background:#0b0b0b;
-
   transition:
     transform var(--transition),
     border-color var(--transition),
@@ -486,7 +514,6 @@ a{
 .home-link-title{
   display:block;
   margin-bottom:8px;
-
   font-size:18px;
   letter-spacing:.04em;
   text-transform:uppercase;
@@ -495,7 +522,6 @@ a{
 .home-link-sub{
   display:block;
   color:var(--muted);
-
   font-size:11px;
   letter-spacing:.08em;
   text-transform:uppercase;
@@ -503,9 +529,24 @@ a{
 }
 
 
-/* ------------------------------------------------ */
-/* RESPONSIVE                                       */
-/* ------------------------------------------------ */
+/* ================================================ */
+/* 9. FOOTER                                        */
+/* ================================================ */
+
+.footer{
+  max-width:var(--max-width);
+  margin:auto;
+  padding:0 20px 40px;
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+
+/* ================================================ */
+/* 10. RESPONSIVE                                   */
+/* ================================================ */
 
 @media (max-width:1000px){
   .project-grid{
@@ -548,6 +589,10 @@ a{
     right:-4px;
     width:42px;
     height:42px;
+  }
+
+  .brand img{
+    height:24px;
   }
 
   :root{
