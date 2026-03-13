@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Capital Flight Archive</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#050505;
+  --text:#f5f5f5;
+  --muted:#a8a8a8;
+  --line:rgba(255,255,255,0.08);
+  --max-width:1240px;
+  --transition:240ms ease;
+
+  --play-size:84px;
+  --play-bg:rgba(0,0,0,0.72);
+  --play-border:1px solid rgba(255,255,255,0.16);
+  --play-radius:999px;
+  --play-icon-size:28px;
+  --play-icon-color:#ffffff;
+  --play-shadow:0 12px 30px rgba(0,0,0,0.28);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Inter",sans-serif;
+  font-weight:700;
+  -webkit-font-smoothing:antialiased;
+}
+
+body.modal-open{
+  overflow:hidden;
+}
+
+img{
+  display:block;
+  width:100%;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+.site-header{
+  position:sticky;
+  top:0;
+  background:rgba(5,5,5,0.94);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+  z-index:20;
+}
+
+.header-inner{
+  max-width:var(--max-width);
+  margin:auto;
+  padding:18px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+}
+
+.brand{
+  font-size:13px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+.main-nav{
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+.main-nav a{
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  opacity:.85;
+  transition:opacity var(--transition);
+}
+
+.main-nav a:hover{
+  opacity:1;
+}
+
+.page{
+  max-width:var(--max-width);
+  margin:auto;
+  padding:40px 20px 80px;
+}
+
+.intro{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:20px;
+  padding:8px 0 24px;
+}
+
+.intro-title{
+  margin:0;
+  font-size:clamp(30px,5vw,54px);
+  line-height:.96;
+  letter-spacing:.02em;
+  text-transform:uppercase;
+}
+
+.intro-copy{
+  max-width:520px;
+  margin:0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+
+.archive-year{
+  padding:40px 0 10px;
+  border-top:1px solid var(--line);
+}
+
+.archive-year:first-of-type{
+  border-top:0;
+  padding-top:12px;
+}
+
+.year-label{
+  font-size:32px;
+  margin:0 0 22px;
+  letter-spacing:.03em;
+}
+
+.project-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px 22px;
+}
+
+.project-card{
+  display:block;
+  position:relative;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:#0b0b0b;
+  transition:transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  cursor:pointer;
+}
+
+.project-card:hover,
+.project-card:focus-visible{
+  transform:translateY(-4px);
+  box-shadow:0 20px 50px rgba(0,0,0,0.34);
+  border-color:rgba(255,255,255,0.14);
+}
+
+.project-thumb{
+  position:relative;
+  aspect-ratio:16/10;
+  overflow:hidden;
+  background:#111;
+}
+
+.project-thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .45s ease, opacity var(--transition), filter var(--transition);
+}
+
+.project-card:hover .project-thumb img,
+.project-card:focus-visible .project-thumb img{
+  transform:scale(1.04);
+  opacity:.82;
+}
+
+.project-info{
+  padding:12px 12px 14px;
+  text-align:center;
+}
+
+.project-title{
+  margin:0;
+  font-size:11px;
+  line-height:1.4;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.project-sub{
+  margin:5px 0 0;
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.4;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.project-overlay{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  pointer-events:none;
+  background:rgba(0,0,0,0);
+  backdrop-filter:blur(0px);
+  -webkit-backdrop-filter:blur(0px);
+  transition:background var(--transition), backdrop-filter var(--transition), -webkit-backdrop-filter var(--transition);
+}
+
+.project-card:hover .project-overlay,
+.project-card:focus-visible .project-overlay{
+  background:rgba(0,0,0,0.22);
+  backdrop-filter:blur(3px);
+  -webkit-backdrop-filter:blur(3px);
+}
+
+.play-button{
+  width:var(--play-size);
+  height:var(--play-size);
+  border-radius:var(--play-radius);
+  background:var(--play-bg);
+  border:var(--play-border);
+  box-shadow:var(--play-shadow);
+  display:grid;
+  place-items:center;
+  opacity:0;
+  transform:scale(.88);
+  transition:opacity var(--transition), transform var(--transition);
+}
+
+.project-card:hover .play-button,
+.project-card:focus-visible .play-button{
+  opacity:1;
+  transform:scale(1.05);
+}
+
+.play-icon{
+  color:var(--play-icon-color);
+  font-size:var(--play-icon-size);
+  line-height:1;
+  transform:translateX(2px);
+}
+
+.footer{
+  max-width:var(--max-width);
+  margin:auto;
+  padding:0 20px 40px;
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* LIGHTBOX */
+.video-lightbox{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:28px;
+  background:rgba(0,0,0,0.1);
+  backdrop-filter:blur(0px);
+  -webkit-backdrop-filter:blur(0px);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:
+    opacity 300ms ease,
+    visibility 300ms ease,
+    background 300ms ease,
+    backdrop-filter 300ms ease,
+    -webkit-backdrop-filter 300ms ease;
+  z-index:9999;
+}
+
+.video-lightbox.is-open{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  background:rgba(0,0,0,0.82);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+}
+
+.video-lightbox-inner{
+  position:relative;
+  width:min(96vw, 1500px);
+}
+
+.video-frame-wrap{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  background:#000;
+  border:1px solid rgba(255,255,255,0.12);
+  box-shadow:0 40px 100px rgba(0,0,0,0.55);
+  overflow:hidden;
+  opacity:0;
+  transition:opacity 220ms ease;
+}
+
+.video-frame-wrap.is-ready{
+  opacity:1;
+}
+
+.video-frame-wrap iframe{
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+}
+
+.video-poster{
+  position:absolute;
+  inset:0;
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  opacity:1;
+  transition:opacity 220ms ease;
+}
+
+.video-poster.is-hidden{
+  opacity:0;
+}
+
+.video-close{
+  position:absolute;
+  top:-14px;
+  right:-14px;
+  width:46px;
+  height:46px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.18);
+  background:rgba(0,0,0,0.85);
+  color:#fff;
+  font:inherit;
+  font-size:16px;
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+  z-index:4;
+  transition:transform var(--transition), background var(--transition);
+}
+
+.video-close:hover{
+  transform:scale(1.06);
+  background:rgba(20,20,20,0.95);
+}
+
+.video-fallback{
+  position:absolute;
+  right:16px;
+  bottom:16px;
+  z-index:3;
+}
+
+.video-fallback a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:42px;
+  padding:0 16px;
+  border:1px solid rgba(255,255,255,0.18);
+  background:rgba(0,0,0,0.72);
+  color:#fff;
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.thumb-clone{
+  position:fixed;
+  z-index:10001;
+  overflow:hidden;
+  border-radius:0;
+  pointer-events:none;
+  transform-origin:center center;
+  box-shadow:0 24px 70px rgba(0,0,0,0.42);
+  background:#111;
+}
+
+.thumb-clone img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.about-copy,
+.contact-copy{
+  max-width:720px;
+  margin:0;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.7;
+}
+
+@media (max-width:1000px){
+  .project-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media (max-width:760px){
+  .header-inner{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .main-nav{
+    justify-content:flex-start;
+    gap:12px 14px;
+  }
+
+  .intro{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .project-grid{
+    grid-template-columns:1fr;
+  }
+
+  .video-lightbox{
+    padding:16px;
+  }
+
+  .video-lightbox-inner{
+    width:100%;
+  }
+
+  .video-close{
+    top:-10px;
+    right:-4px;
+    width:42px;
+    height:42px;
+  }
+
+  :root{
+    --play-size:72px;
+    --play-icon-size:24px;
+  }
+}
+</style>
+</head>
+
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">Capital Flight</div>
+
+    <nav class="main-nav">
+      <a href="#top">Home</a>
+      <a href="#production">Production</a>
+      <a href="#marketing">Marketing</a>
+      <a href="#label">Label</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page" id="top">
+  <section class="intro">
+    <h1 class="intro-title">PRODUCTION</h1>
+    <p class="intro-copy">Click a thumbnail and it expands into a cleaner full-screen player.</p>
+  </section>
+
+  <section class="archive-year" id="production">
+    <h2 class="year-label">2025</h2>
+
+    <div class="project-grid">
+      <div
+        class="project-card youtube-card"
+        data-video-title="Miss Pooja - Lakh Hile Majajan Jandi Da"
+        data-watch-url="https://www.youtube.com/watch?v=C0dv7kjX1Sk"
+        data-embed-url="https://www.youtube-nocookie.com/embed/C0dv7kjX1Sk?autoplay=1&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&color=white">
+        <div class="project-thumb">
+          <img src="https://i.ytimg.com/vi/C0dv7kjX1Sk/hqdefault.jpg" alt="Miss Pooja video thumbnail" loading="lazy">
+          <div class="project-overlay">
+            <div class="play-button"><span class="play-icon">▶</span></div>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3 class="project-title">Miss Pooja</h3>
+          <p class="project-sub">Lakh Hile Majajan Jandi Da</p>
+        </div>
+      </div>
+
+      <div
+        class="project-card youtube-card"
+        data-video-title="J. Esko - Like That"
+        data-watch-url="https://www.youtube.com/watch?v=WeCos4aCC60"
+        data-embed-url="https://www.youtube-nocookie.com/embed/WeCos4aCC60?autoplay=1&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&color=white">
+        <div class="project-thumb">
+          <img src="https://i.ytimg.com/vi/WeCos4aCC60/hqdefault.jpg" alt="J. Esko video thumbnail" loading="lazy">
+          <div class="project-overlay">
+            <div class="play-button"><span class="play-icon">▶</span></div>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3 class="project-title">J. Esko</h3>
+          <p class="project-sub">Like That</p>
+        </div>
+      </div>
+
+      <div
+        class="project-card youtube-card"
+        data-video-title="Channi Nattan - Gangsta Luv"
+        data-watch-url="https://www.youtube.com/watch?v=jNQXAC9IVRw"
+        data-embed-url="https://www.youtube-nocookie.com/embed/jNQXAC9IVRw?autoplay=1&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&color=white">
+        <div class="project-thumb">
+          <img src="https://i.ytimg.com/vi/jNQXAC9IVRw/hqdefault.jpg" alt="Channi Nattan video thumbnail" loading="lazy">
+          <div class="project-overlay">
+            <div class="play-button"><span class="play-icon">▶</span></div>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3 class="project-title">Channi Nattan</h3>
+          <p class="project-sub">Gangsta Luv</p>
+        </div>
+      </div>
+
+      <div
+        class="project-card youtube-card"
+        data-video-title="Russ - Movin’ Album Promo"
+        data-watch-url="https://www.youtube.com/watch?v=ScMzIvxBSi4"
+        data-embed-url="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?autoplay=1&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&color=white">
+        <div class="project-thumb">
+          <img src="https://i.ytimg.com/vi/ScMzIvxBSi4/hqdefault.jpg" alt="Russ video thumbnail" loading="lazy">
+          <div class="project-overlay">
+            <div class="play-button"><span class="play-icon">▶</span></div>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3 class="project-title">Russ</h3>
+          <p class="project-sub">Movin’ Album Promo</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="archive-year" id="marketing">
+    <h2 class="year-label">2024</h2>
+
+    <div class="project-grid">
+      <div
+        class="project-card youtube-card"
+        data-video-title="Campaign Project One - Brand Launch"
+        data-watch-url="https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        data-embed-url="https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ?autoplay=1&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&color=white">
+        <div class="project-thumb">
+          <img src="https://i.ytimg.com/vi/aqz-KE-bpKQ/hqdefault.jpg" alt="Campaign Project One video thumbnail" loading="lazy">
+          <div class="project-overlay">
+            <div class="play-button"><span class="play-icon">▶</span></div>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3 class="project-title">Campaign Project One</h3>
+          <p class="project-sub">Brand Launch</p>
+        </div>
+      </div>
+
+      <div
+        class="project-card youtube-card"
+        data-video-title="Campaign Project Two - Digital Rollout"
+        data-watch-url="https://www.youtube.com/watch?v=LXb3EKWsInQ"
+        data-embed-url="https://www.youtube-nocookie.com/embed/LXb3EKWsInQ?autoplay=1&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&color=white">
+        <div class="project-thumb">
+          <img src="https://i.ytimg.com/vi/LXb3EKWsInQ/hqdefault.jpg" alt="Campaign Project Two video thumbnail" loading="lazy">
+          <div class="project-overlay">
+            <div class="play-button"><span class="play-icon">▶</span></div>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3 class="project-title">Campaign Project Two</h3>
+          <p class="project-sub">Digital Rollout</p>
+        </div>
+      </div>
+
+      <div
+        class="project-card youtube-card"
+        data-video-title="Campaign Project Three - Social Cutdown"
+        data-watch-url="https://www.youtube.com/watch?v=HluANRwPyNo"
+        data-embed-url="https://www.youtube-nocookie.com/embed/HluANRwPyNo?autoplay=1&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&color=white">
+        <div class="project-thumb">
+          <img src="https://i.ytimg.com/vi/HluANRwPyNo/hqdefault.jpg" alt="Campaign Project Three video thumbnail" loading="lazy">
+          <div class="project-overlay">
+            <div class="play-button"><span class="play-icon">▶</span></div>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3 class="project-title">Campaign Project Three</h3>
+          <p class="project-sub">Social Cutdown</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="archive-year" id="label">
+    <h2 class="year-label">2023</h2>
+
+    <div class="project-grid">
+      <div
+        class="project-card youtube-card"
+        data-video-title="Label Project One - Visualiser"
+        data-watch-url="https://www.youtube.com/watch?v=5qap5aO4i9A"
+        data-embed-url="https://www.youtube-nocookie.com/embed/5qap5aO4i9A?autoplay=1&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&color=white">
+        <div class="project-thumb">
+          <img src="https://i.ytimg.com/vi/5qap5aO4i9A/hqdefault.jpg" alt="Label Project One video thumbnail" loading="lazy">
+          <div class="project-overlay">
+            <div class="play-button"><span class="play-icon">▶</span></div>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3 class="project-title">Label Project One</h3>
+          <p class="project-sub">Visualiser</p>
+        </div>
+      </div>
+
+      <div
+        class="project-card youtube-card"
+        data-video-title="Label Project Two - Teaser Edit"
+        data-watch-url="https://www.youtube.com/watch?v=M7lc1UVf-VE"
+        data-embed-url="https://www.youtube-nocookie.com/embed/M7lc1UVf-VE?autoplay=1&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&color=white">
+        <div class="project-thumb">
+          <img src="https://i.ytimg.com/vi/M7lc1UVf-VE/hqdefault.jpg" alt="Label Project Two video thumbnail" loading="lazy">
+          <div class="project-overlay">
+            <div class="play-button"><span class="play-icon">▶</span></div>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3 class="project-title">Label Project Two</h3>
+          <p class="project-sub">Teaser Edit</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="archive-year" id="about">
+    <h2 class="year-label">About</h2>
+    <p class="about-copy">Replace this with your own studio, company, or personal bio.</p>
+  </section>
+
+  <section class="archive-year" id="contact">
+    <h2 class="year-label">Contact</h2>
+    <p class="contact-copy">hello@yourstudio.com<br>Instagram / YouTube / Vimeo</p>
+  </section>
+</main>
+
+<footer class="footer">Capital Flight Archive Starter</footer>
+
+<div class="video-lightbox" id="videoLightbox" aria-hidden="true">
+  <div class="video-lightbox-inner">
+    <button class="video-close" id="videoClose" aria-label="Close video">✕</button>
+    <div class="video-frame-wrap" id="videoFrameWrap">
+      <div class="video-poster" id="videoPoster"></div>
+    </div>
+    <div class="video-fallback" id="videoFallback"></div>
+  </div>
+</div>
+
+<script>
+const videoLightbox = document.getElementById('videoLightbox');
+const videoFrameWrap = document.getElementById('videoFrameWrap');
+const videoClose = document.getElementById('videoClose');
+const videoFallback = document.getElementById('videoFallback');
+const videoCards = document.querySelectorAll('.youtube-card');
+
+let activeClone = null;
+let isAnimating = false;
+
+function wait(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function buildIframe(embedUrl, title) {
+  return `
+    <iframe
+      src="${embedUrl}"
+      title="${title || 'YouTube video'}"
+      allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  `;
+}
+
+function getRect(el) {
+  const rect = el.getBoundingClientRect();
+  return {
+    top: rect.top,
+    left: rect.left,
+    width: rect.width,
+    height: rect.height
+  };
+}
+
+function setStyles(el, styles) {
+  Object.assign(el.style, styles);
+}
+
+async function openVideo(card) {
+  if (isAnimating) return;
+  isAnimating = true;
+
+  const thumb = card.querySelector('.project-thumb');
+  const img = thumb.querySelector('img');
+  const embedUrl = card.dataset.embedUrl;
+  const watchUrl = card.dataset.watchUrl;
+  const title = card.dataset.videoTitle || 'YouTube video';
+
+  if (!thumb || !img || !embedUrl) {
+    isAnimating = false;
+    return;
+  }
+
+  const start = getRect(thumb);
+
+  videoFrameWrap.innerHTML = '<div class="video-poster" id="videoPoster"></div>';
+  const freshPoster = document.getElementById('videoPoster');
+  freshPoster.style.backgroundImage = `url("${img.src}")`;
+  freshPoster.classList.remove('is-hidden');
+  videoFrameWrap.classList.remove('is-ready');
+
+  videoFallback.innerHTML = `
+    <a href="${watchUrl}" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+  `;
+
+  videoLightbox.classList.add('is-open');
+  videoLightbox.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+
+  await wait(20);
+
+  const target = getRect(videoFrameWrap);
+
+  activeClone = document.createElement('div');
+  activeClone.className = 'thumb-clone';
+  activeClone.innerHTML = `<img src="${img.src}" alt="">`;
+  document.body.appendChild(activeClone);
+
+  setStyles(activeClone, {
+    top: `${start.top}px`,
+    left: `${start.left}px`,
+    width: `${start.width}px`,
+    height: `${start.height}px`,
+    transition: 'none'
+  });
+
+  requestAnimationFrame(() => {
+    setStyles(activeClone, {
+      transition: 'all 420ms cubic-bezier(.2,.8,.2,1)',
+      top: `${target.top}px`,
+      left: `${target.left}px`,
+      width: `${target.width}px`,
+      height: `${target.height}px`
+    });
+  });
+
+  await wait(430);
+
+  videoFrameWrap.insertAdjacentHTML('beforeend', buildIframe(embedUrl, title));
+  videoFrameWrap.classList.add('is-ready');
+
+  await wait(180);
+
+  const poster = document.getElementById('videoPoster');
+  if (poster) {
+    poster.classList.add('is-hidden');
+  }
+
+  if (activeClone) {
+    activeClone.remove();
+    activeClone = null;
+  }
+
+  isAnimating = false;
+}
+
+async function closeVideo() {
+  if (isAnimating) return;
+  isAnimating = true;
+
+  const iframe = videoFrameWrap.querySelector('iframe');
+  if (iframe) iframe.remove();
+
+  const poster = document.getElementById('videoPoster');
+  if (poster) poster.classList.remove('is-hidden');
+
+  videoFrameWrap.classList.remove('is-ready');
+  videoLightbox.classList.remove('is-open');
+  videoLightbox.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('modal-open');
+  videoFallback.innerHTML = '';
+
+  await wait(260);
+
+  videoFrameWrap.innerHTML = '<div class="video-poster" id="videoPoster"></div>';
+  isAnimating = false;
+}
+
+videoCards.forEach((card) => {
+  card.addEventListener('click', () => {
+    openVideo(card);
+  });
+});
+
+videoClose.addEventListener('click', closeVideo);
+
+videoLightbox.addEventListener('click', (event) => {
+  if (event.target === videoLightbox) {
+    closeVideo();
+  }
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && videoLightbox.classList.contains('is-open')) {
+    closeVideo();
+  }
+});
+</script>
+</body>
+</html>
