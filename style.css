@@ -127,7 +127,7 @@ a{
 .brand img{
   display:block;
   width:auto;
-  height:72px;
+  height:auto;
   max-width:420px;
 
 }
@@ -144,7 +144,7 @@ a{
 
 .main-nav a,
 .home-nav a{
-  font-size:18px;
+  font-size:20px;
   letter-spacing:.12em;
   text-transform:uppercase;
   opacity:.85;
