@@ -25,32 +25,32 @@ const videoData = {
 
   marketing: [
   /* 2026 */
-  { year: '2026', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2026', title: 'SEHAJPREET (PERFORMANCE', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=f0ogsEtb0IY' },
 
   /* 2025 */
-  { year: '2025', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
-  { year: '2025', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
-  { year: '2025', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
-  { year: '2025', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
-  { year: '2025', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
-  { year: '2025', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
-  { year: '2025', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
-  { year: '2025', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
-  { year: '2025', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
-  { year: '2025', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
-  { year: '2025', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2025', title: 'RICO NASTY (FREESTYLE) ', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=f0ogsEtb0IY' },
+  { year: '2025', title: 'RICO NASTY (PERFORMANCE) ', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=RCjhJi7VFmQ' },
+  { year: '2025', title: 'ANKITH WOODS (FREESTYLE) ', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=H8W6pGOJ9h8' },
+  { year: '2025', title: 'ILYKIMCHI (FREESTYLE) ', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=mO9O1R1Jehk' },
+  { year: '2025', title: 'FEUX (PERFORMANCE) ', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=hdkp5c3ID9I' },
+  { year: '2025', title: 'ANGEL TUMBADO X DAVIZZY (PERFORMANCE) ', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=CBaP99RNV84' },
+  { year: '2025', title: 'DAYANA (PERFORMANCE) ', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=HOWh_lDvdj8' },
+  { year: '2025', title: 'MILLO (PERFORMANCE) ', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=sAHFb_rgcFQ' },
+  { year: '2025', title: 'YOMEL EL MELOSO (PERFORMANCE)', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=sAHFb_rgcFQ },
+  { year: '2025', title: 'JULIO CAESAR (PERFORMANCE) ', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=sAHFb_rgcFQ' },
+  { year: '2025', title: 'AKSHARA (PERFORMANCE)  ', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=bQeQ_YKd7xE' },
 
   /* 2024 */
-  { year: '2024', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
-  { year: '2024', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
-  { year: '2024', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
-  { year: '2024', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
-  { year: '2024', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
-  { year: '2024', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
-  { year: '2024', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2024', title: 'Artist Name', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2024', title: 'Artist Name', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2024', title: 'Artist Name', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2024', title: 'Artist Name', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2024', title: 'Artist Name', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2024', title: 'Artist Name', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2024', title: 'Artist Name', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
 
   /* 2023 */
-  { year: '2023', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' }
+  { year: '2023', title: 'Artist Name', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' }
 
 ],
 
