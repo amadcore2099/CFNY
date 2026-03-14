@@ -25,7 +25,7 @@ const videoData = {
 
   marketing: [
   /* 2026 */
-  { year: '2026', title: 'SEHAJPREET (PERFORMANCE', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=f0ogsEtb0IY' },
+  { year: '2026', title: 'SEHAJPREET (PERFORMANCE)', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=f0ogsEtb0IY' },
 
   /* 2025 */
   { year: '2025', title: 'RICO NASTY (FREESTYLE) ', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=f0ogsEtb0IY' },
