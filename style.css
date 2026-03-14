@@ -15,6 +15,11 @@
   --play-icon-size:28px;
   --play-icon-color:#ffffff;
   --play-shadow:0 12px 30px rgba(0,0,0,0.28);
+
+  /* Background texture */
+  --grid-size:44px;
+  --grid-line:rgba(255,255,255,0.045);
+  --grain-opacity:0.08;
 }
 
 
@@ -37,10 +42,41 @@ body{
   font-family:"Inter",sans-serif;
   font-weight:700;
   -webkit-font-smoothing:antialiased;
+  position:relative;
 }
 
 body.modal-open{
   overflow:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-2;
+
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size:var(--grid-size) var(--grid-size);
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  opacity:var(--grain-opacity);
+
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.16) 0 0.8px, transparent 1px),
+    radial-gradient(circle at 80% 30%, rgba(255,255,255,0.12) 0 0.8px, transparent 1px),
+    radial-gradient(circle at 40% 70%, rgba(255,255,255,0.14) 0 0.8px, transparent 1px),
+    radial-gradient(circle at 70% 80%, rgba(255,255,255,0.10) 0 0.8px, transparent 1px);
+  background-size:120px 120px, 160px 160px, 140px 140px, 180px 180px;
+  mix-blend-mode:soft-light;
 }
 
 img{
@@ -61,8 +97,8 @@ a{
 .site-header{
   position:sticky;
   top:0;
-  background:rgba(5,5,5,0.94);
-  backdrop-filter:blur(10px);
+  background:rgba(5,5,5,0.88);
+  backdrop-filter:blur(12px);
   border-bottom:1px solid var(--line);
   z-index:20;
 }
@@ -90,12 +126,11 @@ a{
 
 .brand img{
   display:block;
-  height:220px;
-  max-width:220px;
   width:auto;
+  height:72px;
+  max-width:420px;
+
 }
-
-
 /* ----------------------------------------------- */
 /* 2B. MAIN NAVIGATION                            */
 /* ----------------------------------------------- */
@@ -193,8 +228,8 @@ a{
 
 .project-grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:28px 22px;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:32px 24px;
 }
 
 .project-card{
@@ -550,7 +585,8 @@ a{
 
 @media (max-width:1000px){
   .project-grid{
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:24px 18px;
   }
 }
 
@@ -592,11 +628,14 @@ a{
   }
 
   .brand img{
-    height:24px;
+    height:40px;
+    max-width:220px;
   }
 
   :root{
     --play-size:72px;
     --play-icon-size:24px;
+    --grid-size:26px;
+    --grain-opacity:0.05;
   }
 }
