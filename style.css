@@ -120,19 +120,21 @@ body::before{
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.35;
+
+  opacity: .45;
 
   background-image:
     repeating-linear-gradient(
       to right,
-      rgba(255,255,255,0.03) 0px,
-      rgba(255,255,255,0.03) 1px,
+      rgba(255,255,255,0.035) 0px,
+      rgba(255,255,255,0.035) 1px,
       transparent 1px,
-      transparent 120px
+      transparent 140px
     );
 
   mix-blend-mode: overlay;
 }
+
 
 body::after{
   content: "";
