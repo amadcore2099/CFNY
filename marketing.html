@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="marketing">
-  <!-- HEADER -->
+   <!-- HEADER -->
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="index.html" aria-label="Capital Flight home">
@@ -21,7 +21,20 @@
         >
       </a>
 
-      <nav class="main-nav">
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
+        type="button"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="main-nav" aria-label="Main navigation">
         <a href="index.html">Home</a>
         <a href="production.html">Production</a>
         <a href="marketing.html">Marketing</a>
