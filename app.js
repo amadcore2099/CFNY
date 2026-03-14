@@ -55,7 +55,7 @@ const videoData = {
 
   label: [
     /* 2025 */
-    { year: '2025', title: 'ABDULLAH MUZAFFAR FT JJ ESKO', subtitle: 'CASH CHAIYAY', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+    { year: '2025', title: 'ABDULLAH MUZAFFAR FT JJ ESKO', subtitle: 'CASH CHAIYAY', youtubeUrl: 'https://www.youtube.com/watch?v=FyKjwCNAH1U' },
 
     /* 2024 */
     { year: '2024', title: 'JJ ESKO FT ANNURAL KHALID', subtitle: 'MISTAKES', youtubeUrl: 'https://www.youtube.com/watch?v=cC47jPDezss' },
