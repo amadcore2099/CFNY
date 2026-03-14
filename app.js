@@ -30,19 +30,19 @@ const videoData = {
 const pageConfig = {
   production: {
     title: 'PRODUCTION',
-    intro: 'This version is set up so you only add year, title, subtitle, and a YouTube link in one data list.'
+    
   },
   marketing: {
     title: 'MARKETING',
-    intro: 'Marketing page using the same layout and video system.'
+    
   },
   label: {
     title: 'LABEL',
-    intro: 'Label page using the same layout and video system.'
+    
   },
   about: {
     title: 'ABOUT',
-    intro: 'A simple about page that matches the rest of the site.'
+    
   }
 };
 
