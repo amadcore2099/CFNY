@@ -10,15 +10,13 @@ const SITE_DATA = {
       videos: [
         { year: '2025', title: 'Miss Pooja', subtitle: 'Lakh Hile Majajan Jandi Da', youtubeId: 'C0dv7kjX1Sk' },
         { year: '2025', title: 'J. Esko', subtitle: 'Like That', youtubeId: 'WeCos4aCC60' },
-        { year: '2025', title: 'Channi Nattan', subtitle: 'Gangsta Luv', youtubeId: 'jMqIpCddv7s' },
-        { year: '2025', title: 'Russ', subtitle: 'Movin’ Album Promo', youtubeId: 'BUU5SxAGbu4' },
-        { year: '2024', title: 'Heems', subtitle: 'BUKAYO SAKA', youtubeId: 'q5w12XA2Cmw' },
-        { year: '2024', title: 'JJ ESKO FT ANNURAL KHALID', subtitle: 'Mistakes', youtubeId: 'cC47jPDezss' },
-        { year: '2024', title: 'LOE SHIMMY & CASH COBAIN', subtitle: 'Confession', youtubeId: 'iCCYnAwPcvI' },
-        { year: '2024', title: 'SHEROZ & HENNY', subtitle: 'Yaar Jigri', youtubeId: 'vrZiFXlE-Vg' },
-        { year: '2024', title: 'Heems', subtitle: 'Rakhi', youtubeId: '3d_cGjvZNTA' }
-        { year: '2023', title: 'RAF SAPERRA ', subtitle: 'RANJHA', youtubeId: 'M7lc1UVf-VE' }
-        { year: '2023', title: 'SHEROZ, HENNY, G HOUR', subtitle: 'Mission', youtubeId: 'Zc135mSu7I' }
+        { year: '2025', title: 'Channi Nattan', subtitle: 'Gangsta Luv', youtubeId: 'jNQXAC9IVRw' },
+        { year: '2025', title: 'Russ', subtitle: 'Movin’ Album Promo', youtubeId: 'ScMzIvxBSi4' },
+        { year: '2024', title: 'Campaign Project One', subtitle: 'Brand Launch', youtubeId: 'aqz-KE-bpKQ' },
+        { year: '2024', title: 'Campaign Project Two', subtitle: 'Digital Rollout', youtubeId: 'LXb3EKWsInQ' },
+        { year: '2024', title: 'Campaign Project Three', subtitle: 'Social Cutdown', youtubeId: 'HluANRwPyNo' },
+        { year: '2023', title: 'Label Project One', subtitle: 'Visualiser', youtubeId: '5qap5aO4i9A' },
+        { year: '2023', title: 'Label Project Two', subtitle: 'Teaser Edit', youtubeId: 'M7lc1UVf-VE' }
       ]
     },
 
