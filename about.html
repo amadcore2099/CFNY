@@ -6,11 +6,11 @@
   <title>Capital Flight — About</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="about">
- <!-- HEADER -->
+
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="index.html" aria-label="Capital Flight home">
@@ -21,30 +21,111 @@
         >
       </a>
 
-      <nav class="main-nav">
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
+        type="button"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="main-nav" aria-label="Main navigation">
         <a href="index.html">Home</a>
         <a href="production.html">Production</a>
         <a href="marketing.html">Marketing</a>
         <a href="label.html">Label</a>
-        <a href="about.html">About</a>
+        <a href="about.html" aria-current="page">About</a>
       </nav>
     </div>
   </header>
+
+  <div class="mobile-menu-overlay" id="mobileMenu" aria-hidden="true">
+    <div class="mobile-menu-backdrop" id="mobileMenuBackdrop"></div>
+
+    <div class="mobile-menu-panel">
+      <button
+        class="mobile-menu-close"
+        id="mobileMenuClose"
+        aria-label="Close menu"
+        type="button"
+      >
+        Tap to close ✕
+      </button>
+
+      <nav class="mobile-menu-nav" aria-label="Mobile navigation">
+        <a href="index.html">Home</a>
+        <a href="production.html">Production</a>
+        <a href="marketing.html">Marketing</a>
+        <a href="label.html">Label</a>
+        <a href="about.html" aria-current="page">About</a>
+      </nav>
+    </div>
+  </div>
+
   <main class="page" id="top">
     <section class="intro">
       <h1 class="intro-title">ABOUT</h1>
-      <p class="intro-copy">A simple about page that matches the rest of the site.</p>
+      <p class="intro-copy"></p>
     </section>
-    <section class="archive-year">
-      <h2 class="year-label">Studio</h2>
-      <p class="about-copy">Replace this with your own studio, company, or personal bio. You can also add credits, clients, regions, or a short mission statement here.</p>
-    </section>
-    <section class="archive-year">
-      <h2 class="year-label">Contact</h2>
-      <p class="contact-copy">hello@yourstudio.com<br>Instagram / YouTube / Vimeo</p>
+
+    <section class="about-shell">
+      <figure class="about-hero">
+        <img
+          src="https://via.placeholder.com/1200x780/1a1a1a/ffffff?text=ABOUT+IMAGE"
+          alt="About placeholder image"
+        >
+      </figure>
+
+      <section class="about-copy-wrap" aria-label="About text">
+        <div class="about-copy-mask" id="aboutCopyMask"></div>
+
+        <p class="about-copy">
+          Capital Flight is a New York-based creative agency and record label founded by
+          director and producer <strong>Saad Mehta</strong>. We deliver production, marketing,
+          and label services for artists and brands pushing culture forward. Bridging East
+          and West, our work has driven 500+ million impressions across major platforms.
+          We focus on hard results, real growth, and long-term impact, building movements
+          that travel, not moments that fade.
+        </p>
+      </section>
+
+      <section class="about-stats" aria-label="Stats">
+        <div class="stat">
+          <span class="stat-number">50M+</span>
+          <span class="stat-label">Placeholder Stat One</span>
+        </div>
+
+        <div class="stat">
+          <span class="stat-number">200M+</span>
+          <span class="stat-label">Placeholder Stat Two</span>
+        </div>
+
+        <div class="stat">
+          <span class="stat-number">20+</span>
+          <span class="stat-label">Placeholder Stat Three</span>
+        </div>
+      </section>
+
+      <section class="partners" aria-label="Partners">
+        <h2 class="partners-title">Our Partners</h2>
+
+        <div class="partners-grid">
+          <div class="partner-logo placeholder">Logo 1</div>
+          <div class="partner-logo placeholder">Logo 2</div>
+          <div class="partner-logo placeholder">Logo 3</div>
+          <div class="partner-logo placeholder">Logo 4</div>
+        </div>
+      </section>
     </section>
   </main>
+
   <footer class="footer">Capital Flight — About</footer>
+
   <script src="app.js"></script>
 </body>
 </html>
