@@ -397,12 +397,18 @@ a{
 
 .video-frame-wrap{
   position:relative;
-  width:100%;
+  width:90%;
+  max-width:900px;
+  margin:auto;
+
   aspect-ratio:16/9;
+
   background:#000;
   border:1px solid rgba(255,255,255,0.12);
   box-shadow:0 40px 100px rgba(0,0,0,0.55);
+
   overflow:hidden;
+
   opacity:0;
   transition:opacity 220ms ease;
 }
