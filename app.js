@@ -4,11 +4,12 @@ const videoData = {
     { year: '2025', title: 'J. Esko', subtitle: 'Like That', youtubeUrl: 'https://www.youtube.com/watch?v=WeCos4aCC60' },
     { year: '2025', title: 'Channi Nattan', subtitle: 'Gangsta Luv', youtubeUrl: 'https://www.youtube.com/watch?v=jNQXAC9IVRw' },
     { year: '2025', title: 'Russ', subtitle: 'Movin’ Album Promo', youtubeUrl: 'https://www.youtube.com/watch?v=ScMzIvxBSi4' },
-    { year: '2024', title: 'Campaign Project One', subtitle: 'Brand Launch', youtubeUrl: 'https://www.youtube.com/watch?v=aqz-KE-bpKQ' },
-    { year: '2024', title: 'Campaign Project Two', subtitle: 'Digital Rollout', youtubeUrl: 'https://www.youtube.com/watch?v=LXb3EKWsInQ' },
-    { year: '2024', title: 'Campaign Project Three', subtitle: 'Social Cutdown', youtubeUrl: 'https://www.youtube.com/watch?v=HluANRwPyNo' },
-    { year: '2023', title: 'Label Project One', subtitle: 'Visualiser', youtubeUrl: 'https://www.youtube.com/watch?v=5qap5aO4i9A' },
-    { year: '2023', title: 'Label Project Two', subtitle: 'Teaser Edit', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' }
+    { year: '2024', title: 'Heems', subtitle: 'Brand Launch', youtubeUrl: 'https://www.youtube.com/watch?v=aqz-KE-bpKQ' },
+    { year: '2024', title: 'JJ ESKO FT ANNURAL KHALID', subtitle: 'Digital Rollout', youtubeUrl: 'https://www.youtube.com/watch?v=LXb3EKWsInQ' },
+    { year: '2024', title: 'LOE SHIMMY & CASH COBAIN', subtitle: 'Social Cutdown', youtubeUrl: 'https://www.youtube.com/watch?v=HluANRwPyNo' },
+    { year: '2024', title: 'SHEROZ & HENNY', subtitle: 'Visualiser', youtubeUrl: 'https://www.youtube.com/watch?v=5qap5aO4i9A' },
+    { year: '2024', title: 'HEEMS', subtitle: 'Teaser Edit', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+    { year: '2023', title: 'RAF SAPERRA', subtitle: 'Teaser Edit', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
   ],
   marketing: [
     { year: '2025', title: 'Marketing Project One', subtitle: 'Social Tease', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
