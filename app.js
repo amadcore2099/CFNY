@@ -102,7 +102,7 @@ const mobileMenu = document.getElementById('mobileMenu');
 const mobileMenuClose = document.getElementById('mobileMenuClose');
 const mobileMenuBackdrop = document.getElementById('mobileMenuBackdrop');
 
-const aboutCopyMask = document.getElementById('aboutCopyMask');
+const aboutCopyTop = document.getElementById('aboutCopyTop');
 
 let activeClone = null;
 let isAnimating = false;
@@ -359,9 +359,13 @@ function closeMobileMenu() {
 }
 
 function updateAboutMask() {
-  if (!aboutCopyMask) return;
+  if (!aboutCopyTop) return;
+
   const scrollTop = window.scrollY || window.pageYOffset;
-  aboutCopyMask.classList.toggle('is-visible', scrollTop > 8);
+  const fade = Math.min(scrollTop / 220, 1);
+
+  aboutCopyTop.style.opacity = String(1 - fade * 0.9);
+  aboutCopyTop.style.transform = `translateY(${Math.min(scrollTop * 0.12, 24)}px)`;
 }
 
 if (videoClose) {
@@ -404,7 +408,7 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-if (aboutCopyMask) {
+if (aboutCopyTop) {
   updateAboutMask();
   window.addEventListener('scroll', updateAboutMask, { passive: true });
 }
