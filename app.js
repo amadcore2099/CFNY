@@ -41,16 +41,16 @@ const videoData = {
   { year: '2025', title: 'AKSHARA (PERFORMANCE)  ', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=bQeQ_YKd7xE' },
 
   /* 2024 */
-  { year: '2024', title: 'Artist Name', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
-  { year: '2024', title: 'Artist Name', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
-  { year: '2024', title: 'Artist Name', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
-  { year: '2024', title: 'Artist Name', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
-  { year: '2024', title: 'Artist Name', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
-  { year: '2024', title: 'Artist Name', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
-  { year: '2024', title: 'Artist Name', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2024', title: 'NSEEB (FREESTYLE)', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=riRiVXi8wes' },
+  { year: '2024', title: 'CHANI, MOGA, AR PAISLEY (CYPHER) ', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=Tjc6sgmFi6Q' },
+  { year: '2024', title: 'HANUMANKIND (FREESTYLE)', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=ZcHTpqWcWFY' },
+  { year: '2024', title: 'DJ SHARAD (DJ SET)', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=U4-YElKTTaM' },
+  { year: '2024', title: 'YUNG SAMMY (FREESTYLE)', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=C3EwYudlYuA' },
+  { year: '2024', title: 'PANJABI HIT SQUAD (DJ SET)', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=zPP4DRi5e8A' },
+  { year: '2024', title: 'KOAD (FREESTYLE)', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=UBj7HAy-ZqU' },
 
   /* 2023 */
-  { year: '2023', title: 'Artist Name', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' }
+  { year: '2023', title: 'RAF SAPERRA (FREESTYLE)', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=DnBZ-QRVg0Q' }
 
 ],
 
