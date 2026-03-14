@@ -392,7 +392,7 @@ a{
 
 .video-lightbox-inner{
   position:relative;
-  width:min(96vw,1500px);
+  width:min(82vw,1100px);
 }
 
 .video-frame-wrap{
