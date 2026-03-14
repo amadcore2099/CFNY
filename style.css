@@ -36,28 +36,28 @@
   --card-hover-border: rgba(255,255,255,0.18);
   --card-thumb-bg: rgba(255,255,255,0.04);
 
-   /* header controls */
---header-bg: rgba(5,5,5,0.78);
---header-border: rgba(255,255,255,0.08);
---header-blur: 10px;
---header-padding-y: 18px;
---header-padding-x: 20px;
---header-gap: 20px;
---header-z: 20;
+  /* header controls */
+  --header-bg: rgba(5,5,5,0.78);
+  --header-border: rgba(255,255,255,0.08);
+  --header-blur: 10px;
+  --header-padding-y: 18px;
+  --header-padding-x: 20px;
+  --header-gap: 20px;
+  --header-z: 20;
 
-/* logo controls */
---logo-width: 180px;
---logo-height: auto;
---logo-offset-x: 0px;
---logo-offset-y: 0px;
+  /* logo controls */
+  --logo-width: 180px;
+  --logo-height: auto;
+  --logo-max-width: none;
+  --logo-offset-x: 0px;
+  --logo-offset-y: 0px;
 
-/* nav controls */
---nav-gap: 18px;
---nav-link-size: 11px;
---nav-letter-spacing: .12em;
---nav-opacity: .85;
+  /* nav controls */
+  --nav-gap: 18px;
+  --nav-link-size: 11px;
+  --nav-letter-spacing: .12em;
+  --nav-opacity: .85;
 }
-
 
 
 /* ==================================================
@@ -96,13 +96,17 @@ a{
   text-decoration: none;
 }
 
-/* background grid */
+
+/* ==================================================
+   BACKGROUND EFFECTS
+================================================== */
+
 body::before{
   content: "";
   position: fixed;
   inset: 0;
-  pointer-events: none;
   z-index: 0;
+  pointer-events: none;
   opacity: var(--grid-opacity);
   background-image:
     linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px),
@@ -110,13 +114,12 @@ body::before{
   background-size: var(--grid-size) var(--grid-size);
 }
 
-/* film grain */
 body::after{
   content: "";
   position: fixed;
   inset: -20%;
-  pointer-events: none;
   z-index: 1;
+  pointer-events: none;
   opacity: var(--grain-opacity);
   background-image: var(--grain-image);
   background-repeat: repeat;
@@ -134,7 +137,7 @@ body::after{
   100% { transform: translate(0, 0); }
 }
 
-/* keep site content above bg effects */
+/* keep content above bg effects */
 .site-header,
 .page,
 .footer,
@@ -153,43 +156,52 @@ body::after{
 .site-header{
   position: sticky;
   top: 0;
-  z-index: 20;
-  background: rgba(5,5,5,0.78);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line);
+  z-index: var(--header-z);
+  background: var(--header-bg);
+  backdrop-filter: blur(var(--header-blur));
+  border-bottom: 1px solid var(--header-border);
 }
 
 .header-inner{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
+  gap: var(--header-gap);
 
   max-width: var(--max-width);
   margin: auto;
-  padding: 18px 20px;
+  padding: var(--header-padding-y) var(--header-padding-x);
 }
 
 .brand{
-  font-size: 13px;
-  letter-spacing: .14em;
-  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
   white-space: nowrap;
+}
+
+.site-logo{
+  display: block;
+  width: var(--logo-width);
+  height: var(--logo-height);
+  max-width: var(--logo-max-width);
+  object-fit: contain;
+  transform: translate(var(--logo-offset-x), var(--logo-offset-y));
 }
 
 .main-nav{
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 18px;
+  gap: var(--nav-gap);
 }
 
 .main-nav a,
 .home-nav a{
-  font-size: 11px;
-  letter-spacing: .12em;
+  font-size: var(--nav-link-size);
+  letter-spacing: var(--nav-letter-spacing);
   text-transform: uppercase;
-  opacity: .85;
+  opacity: var(--nav-opacity);
   transition: opacity var(--transition);
 }
 
@@ -368,7 +380,6 @@ body::after{
 .play-button{
   display: grid;
   place-items: center;
-
   width: var(--play-size);
   height: var(--play-size);
   border-radius: var(--play-radius);
@@ -659,63 +670,6 @@ body::after{
   text-transform: uppercase;
 }
 
-/* ==================================================
-   HEADER
-================================================== */
-
-.site-header{
-  position: sticky;
-  top: 0;
-  z-index: var(--header-z);
-  background: var(--header-bg);
-  backdrop-filter: blur(var(--header-blur));
-  border-bottom: 1px solid var(--header-border);
-}
-
-.header-inner{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--header-gap);
-
-  max-width: var(--max-width);
-  margin: auto;
-  padding: var(--header-padding-y) var(--header-padding-x);
-}
-
-.brand{
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-.site-logo{
-  display: block;
-  width: var(--logo-width);
-  height: var(--logo-height);
-  transform: translate(var(--logo-offset-x), var(--logo-offset-y));
-}
-
-.main-nav{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: var(--nav-gap);
-}
-
-.main-nav a,
-.home-nav a{
-  font-size: var(--nav-link-size);
-  letter-spacing: var(--nav-letter-spacing);
-  text-transform: uppercase;
-  opacity: var(--nav-opacity);
-  transition: opacity var(--transition);
-}
-
-.main-nav a:hover,
-.home-nav a:hover{
-  opacity: 1;
-}
 
 /* ==================================================
    RESPONSIVE
@@ -733,6 +687,7 @@ body::after{
     --play-icon-size: 24px;
     --grid-size: 28px;
     --grain-opacity: 0.06;
+    --logo-width: 140px;
   }
 
   .header-inner{
