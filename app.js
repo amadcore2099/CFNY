@@ -1,31 +1,31 @@
 const videoData = {
   production: [
-    { year: '2025', title: 'Miss Pooja', subtitle: 'Lakh Hile Majajan Jandi Da', youtubeId: 'C0dv7kjX1Sk' },
-    { year: '2025', title: 'J. Esko', subtitle: 'Like That', youtubeId: 'WeCos4aCC60' },
-    { year: '2025', title: 'Channi Nattan', subtitle: 'Gangsta Luv', youtubeId: 'jNQXAC9IVRw' },
-    { year: '2025', title: 'Russ', subtitle: 'Movin’ Album Promo', youtubeId: 'ScMzIvxBSi4' },
-    { year: '2024', title: 'Campaign Project One', subtitle: 'Brand Launch', youtubeId: 'aqz-KE-bpKQ' },
-    { year: '2024', title: 'Campaign Project Two', subtitle: 'Digital Rollout', youtubeId: 'LXb3EKWsInQ' },
-    { year: '2024', title: 'Campaign Project Three', subtitle: 'Social Cutdown', youtubeId: 'HluANRwPyNo' },
-    { year: '2023', title: 'Label Project One', subtitle: 'Visualiser', youtubeId: '5qap5aO4i9A' },
-    { year: '2023', title: 'Label Project Two', subtitle: 'Teaser Edit', youtubeId: 'M7lc1UVf-VE' }
+    { year: '2025', title: 'Miss Pooja', subtitle: 'Lakh Hile Majajan Jandi Da', youtubeUrl: 'https://www.youtube.com/watch?v=C0dv7kjX1Sk' },
+    { year: '2025', title: 'J. Esko', subtitle: 'Like That', youtubeUrl: 'https://www.youtube.com/watch?v=WeCos4aCC60' },
+    { year: '2025', title: 'Channi Nattan', subtitle: 'Gangsta Luv', youtubeUrl: 'https://www.youtube.com/watch?v=jNQXAC9IVRw' },
+    { year: '2025', title: 'Russ', subtitle: 'Movin’ Album Promo', youtubeUrl: 'https://www.youtube.com/watch?v=ScMzIvxBSi4' },
+    { year: '2024', title: 'Campaign Project One', subtitle: 'Brand Launch', youtubeUrl: 'https://www.youtube.com/watch?v=aqz-KE-bpKQ' },
+    { year: '2024', title: 'Campaign Project Two', subtitle: 'Digital Rollout', youtubeUrl: 'https://www.youtube.com/watch?v=LXb3EKWsInQ' },
+    { year: '2024', title: 'Campaign Project Three', subtitle: 'Social Cutdown', youtubeUrl: 'https://www.youtube.com/watch?v=HluANRwPyNo' },
+    { year: '2023', title: 'Label Project One', subtitle: 'Visualiser', youtubeUrl: 'https://www.youtube.com/watch?v=5qap5aO4i9A' },
+    { year: '2023', title: 'Label Project Two', subtitle: 'Teaser Edit', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' }
   ],
   marketing: [
-    { year: '2025', title: 'Marketing Project One', subtitle: 'Social Tease', youtubeId: 'M7lc1UVf-VE' },
-    { year: '2024', title: 'Marketing Project Two', subtitle: 'Digital Trailer', youtubeId: 'aqz-KE-bpKQ' },
-    { year: '2023', title: 'Marketing Project Three', subtitle: 'Launch Clip', youtubeId: 'LXb3EKWsInQ' }
+    { year: '2025', title: 'Marketing Project One', subtitle: 'Social Tease', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+    { year: '2024', title: 'Marketing Project Two', subtitle: 'Digital Trailer', youtubeUrl: 'https://www.youtube.com/watch?v=aqz-KE-bpKQ' },
+    { year: '2023', title: 'Marketing Project Three', subtitle: 'Launch Clip', youtubeUrl: 'https://www.youtube.com/watch?v=LXb3EKWsInQ' }
   ],
   label: [
-    { year: '2025', title: 'Label Release One', subtitle: 'Official Video', youtubeId: 'M7lc1UVf-VE' },
-    { year: '2024', title: 'Label Release Two', subtitle: 'Visualiser', youtubeId: 'ScMzIvxBSi4' },
-    { year: '2023', title: 'Label Release Three', subtitle: 'Teaser Edit', youtubeId: '5qap5aO4i9A' }
+    { year: '2025', title: 'Label Release One', subtitle: 'Official Video', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+    { year: '2024', title: 'Label Release Two', subtitle: 'Visualiser', youtubeUrl: 'https://www.youtube.com/watch?v=ScMzIvxBSi4' },
+    { year: '2023', title: 'Label Release Three', subtitle: 'Teaser Edit', youtubeUrl: 'https://www.youtube.com/watch?v=5qap5aO4i9A' }
   ]
 };
 
 const pageConfig = {
   production: {
     title: 'PRODUCTION',
-    intro: 'This version is set up so you only add year, title, subtitle, and YouTube ID in one data list.'
+    intro: 'This version is set up so you only add year, title, subtitle, and a YouTube link in one data list.'
   },
   marketing: {
     title: 'MARKETING',
@@ -57,6 +57,33 @@ let activeClone = null;
 let isAnimating = false;
 
 function wait(ms){ return new Promise(resolve => setTimeout(resolve, ms)); }
+
+function getYouTubeId(value = '') {
+  const input = String(value).trim();
+  if (!input) return '';
+
+  if (/^[a-zA-Z0-9_-]{11}$/.test(input)) return input;
+
+  const patterns = [
+    /[?&]v=([a-zA-Z0-9_-]{11})/,
+    /youtu\.be\/([a-zA-Z0-9_-]{11})/,
+    /youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/,
+    /youtube\.com\/embed\/([a-zA-Z0-9_-]{11})/,
+    /youtube\.com\/live\/([a-zA-Z0-9_-]{11})/
+  ];
+
+  for (const pattern of patterns) {
+    const match = input.match(pattern);
+    if (match && match[1]) return match[1];
+  }
+
+  return '';
+}
+
+function getVideoId(item = {}) {
+  return item.youtubeId || getYouTubeId(item.youtubeUrl);
+}
+
 function getWatchUrl(videoId){ return `https://www.youtube.com/watch?v=${videoId}`; }
 function getEmbedUrl(videoId){ return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&color=white`; }
 function getThumbUrl(videoId){ return `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`; }
@@ -65,9 +92,14 @@ function escapeHtml(str=''){ return str.replace(/&/g,'&amp;').replace(/</g,'&lt;
 function createCard(item){
   const safeTitle = escapeHtml(item.title);
   const safeSubtitle = escapeHtml(item.subtitle);
-  const watchUrl = getWatchUrl(item.youtubeId);
-  const embedUrl = getEmbedUrl(item.youtubeId);
-  const thumbUrl = getThumbUrl(item.youtubeId);
+  const videoId = getVideoId(item);
+
+  if (!videoId) return '';
+
+  const watchUrl = getWatchUrl(videoId);
+  const embedUrl = getEmbedUrl(videoId);
+  const thumbUrl = getThumbUrl(videoId);
+
   return `
     <div class="project-card youtube-card" data-video-title="${safeTitle} - ${safeSubtitle}" data-watch-url="${watchUrl}" data-embed-url="${embedUrl}">
       <div class="project-thumb">
