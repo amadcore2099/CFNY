@@ -1,368 +1,179 @@
-/* ==================================================
-   EDITABLE CONTENT
-================================================== */
+const videoData = {
+  production: [
+    { year: '2025', title: 'Miss Pooja', subtitle: 'Lakh Hile Majajan Jandi Da', youtubeId: 'C0dv7kjX1Sk' },
+    { year: '2025', title: 'J. Esko', subtitle: 'Like That', youtubeId: 'WeCos4aCC60' },
+    { year: '2025', title: 'Channi Nattan', subtitle: 'Gangsta Luv', youtubeId: 'jNQXAC9IVRw' },
+    { year: '2025', title: 'Russ', subtitle: 'Movin’ Album Promo', youtubeId: 'ScMzIvxBSi4' },
+    { year: '2024', title: 'Campaign Project One', subtitle: 'Brand Launch', youtubeId: 'aqz-KE-bpKQ' },
+    { year: '2024', title: 'Campaign Project Two', subtitle: 'Digital Rollout', youtubeId: 'LXb3EKWsInQ' },
+    { year: '2024', title: 'Campaign Project Three', subtitle: 'Social Cutdown', youtubeId: 'HluANRwPyNo' },
+    { year: '2023', title: 'Label Project One', subtitle: 'Visualiser', youtubeId: '5qap5aO4i9A' },
+    { year: '2023', title: 'Label Project Two', subtitle: 'Teaser Edit', youtubeId: 'M7lc1UVf-VE' }
+  ],
+  marketing: [
+    { year: '2025', title: 'Marketing Project One', subtitle: 'Social Tease', youtubeId: 'M7lc1UVf-VE' },
+    { year: '2024', title: 'Marketing Project Two', subtitle: 'Digital Trailer', youtubeId: 'aqz-KE-bpKQ' },
+    { year: '2023', title: 'Marketing Project Three', subtitle: 'Launch Clip', youtubeId: 'LXb3EKWsInQ' }
+  ],
+  label: [
+    { year: '2025', title: 'Label Release One', subtitle: 'Official Video', youtubeId: 'M7lc1UVf-VE' },
+    { year: '2024', title: 'Label Release Two', subtitle: 'Visualiser', youtubeId: 'ScMzIvxBSi4' },
+    { year: '2023', title: 'Label Release Three', subtitle: 'Teaser Edit', youtubeId: '5qap5aO4i9A' }
+  ]
+};
 
-const SITE_DATA = {
-  pages: {
-    production: {
-      title: 'PRODUCTION',
-      intro: 'This version is set up so you only add year, title, subtitle, and YouTube ID in one data list.',
-      videos: [
-        { year: '2025', title: 'Miss Pooja', subtitle: 'Lakh Hile Majajan Jandi Da', youtubeId: 'C0dv7kjX1Sk' },
-        { year: '2025', title: 'J. Esko', subtitle: 'Like That', youtubeId: 'WeCos4aCC60' },
-        { year: '2025', title: 'Channi Nattan', subtitle: 'Gangsta Luv', youtubeId: 'jNQXAC9IVRw' },
-        { year: '2025', title: 'Russ', subtitle: 'Movin’ Album Promo', youtubeId: 'ScMzIvxBSi4' },
-        { year: '2024', title: 'Campaign Project One', subtitle: 'Brand Launch', youtubeId: 'aqz-KE-bpKQ' },
-        { year: '2024', title: 'Campaign Project Two', subtitle: 'Digital Rollout', youtubeId: 'LXb3EKWsInQ' },
-        { year: '2024', title: 'Campaign Project Three', subtitle: 'Social Cutdown', youtubeId: 'HluANRwPyNo' },
-        { year: '2023', title: 'Label Project One', subtitle: 'Visualiser', youtubeId: '5qap5aO4i9A' },
-        { year: '2023', title: 'Label Project Two', subtitle: 'Teaser Edit', youtubeId: 'M7lc1UVf-VE' }
-      ]
-    },
-
-    marketing: {
-      title: 'MARKETING',
-      intro: 'Marketing page using the same layout and video system.',
-      videos: [
-        { year: '2025', title: 'Marketing Project One', subtitle: 'Social Tease', youtubeId: 'M7lc1UVf-VE' },
-        { year: '2024', title: 'Marketing Project Two', subtitle: 'Digital Trailer', youtubeId: 'aqz-KE-bpKQ' },
-        { year: '2023', title: 'Marketing Project Three', subtitle: 'Launch Clip', youtubeId: 'LXb3EKWsInQ' }
-      ]
-    },
-
-    label: {
-      title: 'LABEL',
-      intro: 'Label page using the same layout and video system.',
-      videos: [
-        { year: '2025', title: 'Label Release One', subtitle: 'Official Video', youtubeId: 'M7lc1UVf-VE' },
-        { year: '2024', title: 'Label Release Two', subtitle: 'Visualiser', youtubeId: 'ScMzIvxBSi4' },
-        { year: '2023', title: 'Label Release Three', subtitle: 'Teaser Edit', youtubeId: '5qap5aO4i9A' }
-      ]
-    },
-
-    about: {
-      title: 'ABOUT',
-      intro: 'A simple about page that matches the rest of the site.',
-      videos: []
-    }
+const pageConfig = {
+  production: {
+    title: 'PRODUCTION',
+    intro: 'This version is set up so you only add year, title, subtitle, and YouTube ID in one data list.'
+  },
+  marketing: {
+    title: 'MARKETING',
+    intro: 'Marketing page using the same layout and video system.'
+  },
+  label: {
+    title: 'LABEL',
+    intro: 'Label page using the same layout and video system.'
+  },
+  about: {
+    title: 'ABOUT',
+    intro: 'A simple about page that matches the rest of the site.'
   }
 };
 
-/* ==================================================
-   CONSTANTS
-================================================== */
+const currentPage = document.body.dataset.page || 'production';
+const pageData = pageConfig[currentPage] || pageConfig.production;
 
-const DEFAULT_PAGE = 'production';
-const ANIMATION_DURATION = 420;
-const LIGHTBOX_CLOSE_DELAY = 260;
-const IFRAME_REVEAL_DELAY = 180;
+const introTitle = document.querySelector('.intro-title');
+const introCopy = document.querySelector('.intro-copy');
+if (introTitle) introTitle.textContent = pageData.title;
+if (introCopy) introCopy.textContent = pageData.intro;
 
-/* ==================================================
-   PAGE SETUP
-================================================== */
-
-const currentPageKey = document.body.dataset.page || DEFAULT_PAGE;
-const currentPage = SITE_DATA.pages[currentPageKey] || SITE_DATA.pages[DEFAULT_PAGE];
-
-/* ==================================================
-   DOM REFERENCES
-================================================== */
-
-const dom = {
-  introTitle: document.querySelector('.intro-title'),
-  introCopy: document.querySelector('.intro-copy'),
-  lightbox: document.getElementById('videoLightbox'),
-  frameWrap: document.getElementById('videoFrameWrap'),
-  closeBtn: document.getElementById('videoClose'),
-  fallback: document.getElementById('videoFallback')
-};
-
-/* ==================================================
-   STATE
-================================================== */
-
+const videoLightbox = document.getElementById('videoLightbox');
+const videoFrameWrap = document.getElementById('videoFrameWrap');
+const videoClose = document.getElementById('videoClose');
+const videoFallback = document.getElementById('videoFallback');
 let activeClone = null;
 let isAnimating = false;
 
-/* ==================================================
-   HELPERS
-================================================== */
+function wait(ms){ return new Promise(resolve => setTimeout(resolve, ms)); }
+function getWatchUrl(videoId){ return `https://www.youtube.com/watch?v=${videoId}`; }
+function getEmbedUrl(videoId){ return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&color=white`; }
+function getThumbUrl(videoId){ return `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`; }
+function escapeHtml(str=''){ return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;'); }
 
-function wait(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-function escapeHtml(str = '') {
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
-}
-
-function getWatchUrl(videoId) {
-  return `https://www.youtube.com/watch?v=${videoId}`;
-}
-
-function getEmbedUrl(videoId) {
-  return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&color=white`;
-}
-
-function getThumbUrl(videoId) {
-  return `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
-}
-
-function getRect(element) {
-  const rect = element.getBoundingClientRect();
-  return {
-    top: rect.top,
-    left: rect.left,
-    width: rect.width,
-    height: rect.height
-  };
-}
-
-function setStyles(element, styles) {
-  Object.assign(element.style, styles);
-}
-
-/* ==================================================
-   PAGE CONTENT
-================================================== */
-
-function applyPageIntro() {
-  if (dom.introTitle) dom.introTitle.textContent = currentPage.title;
-  if (dom.introCopy) dom.introCopy.textContent = currentPage.intro;
-}
-
-function createCardMarkup(video) {
-  const safeTitle = escapeHtml(video.title);
-  const safeSubtitle = escapeHtml(video.subtitle);
-
+function createCard(item){
+  const safeTitle = escapeHtml(item.title);
+  const safeSubtitle = escapeHtml(item.subtitle);
+  const watchUrl = getWatchUrl(item.youtubeId);
+  const embedUrl = getEmbedUrl(item.youtubeId);
+  const thumbUrl = getThumbUrl(item.youtubeId);
   return `
-    <div
-      class="project-card youtube-card"
-      data-video-title="${safeTitle} - ${safeSubtitle}"
-      data-watch-url="${getWatchUrl(video.youtubeId)}"
-      data-embed-url="${getEmbedUrl(video.youtubeId)}"
-    >
+    <div class="project-card youtube-card" data-video-title="${safeTitle} - ${safeSubtitle}" data-watch-url="${watchUrl}" data-embed-url="${embedUrl}">
       <div class="project-thumb">
-        <img
-          src="${getThumbUrl(video.youtubeId)}"
-          alt="${safeTitle} video thumbnail"
-          loading="lazy"
-        >
-        <div class="project-overlay">
-          <div class="play-button">
-            <span class="play-icon">▶</span>
-          </div>
-        </div>
+        <img src="${thumbUrl}" alt="${safeTitle} video thumbnail" loading="lazy">
+        <div class="project-overlay"><div class="play-button"><span class="play-icon">▶</span></div></div>
       </div>
-
       <div class="project-info">
         <h3 class="project-title">${safeTitle}</h3>
         <p class="project-sub">${safeSubtitle}</p>
       </div>
-    </div>
-  `;
+    </div>`;
 }
 
-function renderVideoSections(pageKey) {
-  const page = SITE_DATA.pages[pageKey];
-  if (!page) return;
-
-  document.querySelectorAll('.archive-year[data-year]').forEach(section => {
+function renderPage(pageKey){
+  const allItems = videoData[pageKey] || [];
+  document.querySelectorAll('.archive-year[data-year]').forEach((section) => {
     const year = section.dataset.year;
     const grid = section.querySelector('.project-grid');
+    const items = allItems.filter(item => item.year === year);
     if (!grid) return;
-
-    const videosForYear = page.videos.filter(video => video.year === year);
-
-    if (!videosForYear.length) {
+    if (!items.length) {
       section.style.display = 'none';
       return;
     }
-
     section.style.display = '';
-    grid.innerHTML = videosForYear.map(createCardMarkup).join('');
+    grid.innerHTML = items.map(createCard).join('');
   });
-
   bindVideoCards();
 }
 
-/* ==================================================
-   LIGHTBOX
-================================================== */
-
-function buildIframeMarkup(embedUrl, title = 'YouTube video') {
-  return `
-    <iframe
-      src="${embedUrl}"
-      title="${title}"
-      allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-      referrerpolicy="strict-origin-when-cross-origin"
-      allowfullscreen
-    ></iframe>
-  `;
+function buildIframe(embedUrl, title){
+  return `<iframe src="${embedUrl}" title="${title || 'YouTube video'}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
 }
+function getRect(el){ const rect = el.getBoundingClientRect(); return { top: rect.top, left: rect.left, width: rect.width, height: rect.height }; }
+function setStyles(el, styles){ Object.assign(el.style, styles); }
 
-function setPosterImage(imageSrc) {
-  dom.frameWrap.innerHTML = '<div class="video-poster" id="videoPoster"></div>';
-  const poster = document.getElementById('videoPoster');
-
-  if (poster) {
-    poster.style.backgroundImage = `url("${imageSrc}")`;
-    poster.classList.remove('is-hidden');
-  }
-
-  dom.frameWrap.classList.remove('is-ready');
-}
-
-function openLightbox() {
-  dom.lightbox.classList.add('is-open');
-  dom.lightbox.setAttribute('aria-hidden', 'false');
-  document.body.classList.add('modal-open');
-}
-
-function closeLightbox() {
-  dom.lightbox.classList.remove('is-open');
-  dom.lightbox.setAttribute('aria-hidden', 'true');
-  document.body.classList.remove('modal-open');
-}
-
-function clearLightbox() {
-  dom.frameWrap.innerHTML = '<div class="video-poster" id="videoPoster"></div>';
-  dom.frameWrap.classList.remove('is-ready');
-  dom.fallback.innerHTML = '';
-}
-
-async function openVideo(card) {
-  if (isAnimating || !dom.lightbox || !dom.frameWrap || !dom.fallback) return;
-
+async function openVideo(card){
+  if (isAnimating || !videoLightbox || !videoFrameWrap || !videoFallback) return;
+  isAnimating = true;
   const thumb = card.querySelector('.project-thumb');
-  const image = thumb?.querySelector('img');
+  const img = thumb?.querySelector('img');
   const embedUrl = card.dataset.embedUrl;
   const watchUrl = card.dataset.watchUrl;
   const title = card.dataset.videoTitle || 'YouTube video';
-
-  if (!thumb || !image || !embedUrl) return;
-
-  isAnimating = true;
-
-  const startRect = getRect(thumb);
-
-  setPosterImage(image.src);
-  dom.fallback.innerHTML = `<a href="${watchUrl}" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>`;
-  openLightbox();
-
+  if (!thumb || !img || !embedUrl) { isAnimating = false; return; }
+  const start = getRect(thumb);
+  videoFrameWrap.innerHTML = '<div class="video-poster" id="videoPoster"></div>';
+  const freshPoster = document.getElementById('videoPoster');
+  freshPoster.style.backgroundImage = `url("${img.src}")`;
+  freshPoster.classList.remove('is-hidden');
+  videoFrameWrap.classList.remove('is-ready');
+  videoFallback.innerHTML = `<a href="${watchUrl}" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>`;
+  videoLightbox.classList.add('is-open');
+  videoLightbox.setAttribute('aria-hidden','false');
+  document.body.classList.add('modal-open');
   await wait(20);
-
-  const targetRect = getRect(dom.frameWrap);
-
+  const target = getRect(videoFrameWrap);
   activeClone = document.createElement('div');
   activeClone.className = 'thumb-clone';
-  activeClone.innerHTML = `<img src="${image.src}" alt="">`;
-
+  activeClone.innerHTML = `<img src="${img.src}" alt="">`;
   document.body.appendChild(activeClone);
-
-  setStyles(activeClone, {
-    top: `${startRect.top}px`,
-    left: `${startRect.left}px`,
-    width: `${startRect.width}px`,
-    height: `${startRect.height}px`,
-    transition: 'none'
-  });
-
+  setStyles(activeClone,{top:`${start.top}px`,left:`${start.left}px`,width:`${start.width}px`,height:`${start.height}px`,transition:'none'});
   requestAnimationFrame(() => {
-    setStyles(activeClone, {
-      top: `${targetRect.top}px`,
-      left: `${targetRect.left}px`,
-      width: `${targetRect.width}px`,
-      height: `${targetRect.height}px`,
-      transition: `all ${ANIMATION_DURATION}ms cubic-bezier(.2,.8,.2,1)`
-    });
+    setStyles(activeClone,{transition:'all 420ms cubic-bezier(.2,.8,.2,1)',top:`${target.top}px`,left:`${target.left}px`,width:`${target.width}px`,height:`${target.height}px`});
   });
-
-  await wait(ANIMATION_DURATION + 10);
-
-  dom.frameWrap.insertAdjacentHTML('beforeend', buildIframeMarkup(embedUrl, title));
-  dom.frameWrap.classList.add('is-ready');
-
-  await wait(IFRAME_REVEAL_DELAY);
-
+  await wait(430);
+  videoFrameWrap.insertAdjacentHTML('beforeend', buildIframe(embedUrl, title));
+  videoFrameWrap.classList.add('is-ready');
+  await wait(180);
   const poster = document.getElementById('videoPoster');
   if (poster) poster.classList.add('is-hidden');
-
-  if (activeClone) {
-    activeClone.remove();
-    activeClone = null;
-  }
-
+  if (activeClone) { activeClone.remove(); activeClone = null; }
   isAnimating = false;
 }
 
-async function closeVideo() {
-  if (isAnimating || !dom.lightbox || !dom.frameWrap || !dom.fallback) return;
-
+async function closeVideo(){
+  if (isAnimating || !videoLightbox || !videoFrameWrap || !videoFallback) return;
   isAnimating = true;
-
-  const iframe = dom.frameWrap.querySelector('iframe');
+  const iframe = videoFrameWrap.querySelector('iframe');
   if (iframe) iframe.remove();
-
   const poster = document.getElementById('videoPoster');
   if (poster) poster.classList.remove('is-hidden');
-
-  closeLightbox();
-  dom.fallback.innerHTML = '';
-
-  await wait(LIGHTBOX_CLOSE_DELAY);
-
-  clearLightbox();
+  videoFrameWrap.classList.remove('is-ready');
+  videoLightbox.classList.remove('is-open');
+  videoLightbox.setAttribute('aria-hidden','true');
+  document.body.classList.remove('modal-open');
+  videoFallback.innerHTML = '';
+  await wait(260);
+  videoFrameWrap.innerHTML = '<div class="video-poster" id="videoPoster"></div>';
   isAnimating = false;
 }
 
-/* ==================================================
-   EVENTS
-================================================== */
-
-function bindVideoCards() {
-  document.querySelectorAll('.youtube-card').forEach(card => {
+function bindVideoCards(){
+  document.querySelectorAll('.youtube-card').forEach((card) => {
     card.addEventListener('click', () => openVideo(card));
   });
 }
 
-function bindGlobalEvents() {
-  if (dom.closeBtn) {
-    dom.closeBtn.addEventListener('click', closeVideo);
-  }
-
-  if (dom.lightbox) {
-    dom.lightbox.addEventListener('click', event => {
-      if (event.target === dom.lightbox) {
-        closeVideo();
-      }
-    });
-  }
-
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && dom.lightbox?.classList.contains('is-open')) {
-      closeVideo();
-    }
+if (videoClose) videoClose.addEventListener('click', closeVideo);
+if (videoLightbox) {
+  videoLightbox.addEventListener('click', (event) => {
+    if (event.target === videoLightbox) closeVideo();
   });
 }
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && videoLightbox?.classList.contains('is-open')) closeVideo();
+});
 
-/* ==================================================
-   INIT
-================================================== */
-
-function init() {
-  applyPageIntro();
-  bindGlobalEvents();
-
-  if (['production', 'marketing', 'label'].includes(currentPageKey)) {
-    renderVideoSections(currentPageKey);
-  }
-}
-
-init();
+if (['production','marketing','label'].includes(currentPage)) renderPage(currentPage);
