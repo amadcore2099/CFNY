@@ -120,11 +120,18 @@ body::before{
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: var(--grid-opacity);
+  opacity: 0.35;
+
   background-image:
-    linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px);
-  background-size: var(--grid-size) var(--grid-size);
+    repeating-linear-gradient(
+      to right,
+      rgba(255,255,255,0.03) 0px,
+      rgba(255,255,255,0.03) 1px,
+      transparent 1px,
+      transparent 120px
+    );
+
+  mix-blend-mode: overlay;
 }
 
 body::after{
