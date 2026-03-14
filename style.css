@@ -125,12 +125,13 @@ a{
 }
 
 .brand img{
-  display:flex;
+  display:block;
   height:60px;
-  width:107px;
+  width:auto;
   max-width:none;
-
 }
+
+
 /* ----------------------------------------------- */
 /* 2B. MAIN NAVIGATION                            */
 /* ----------------------------------------------- */
