@@ -432,7 +432,7 @@ body::after{
 
 .video-lightbox-inner{
   position: relative;
-  width: min(68vw, 880px);
+  width: min(75vw, 980px);
 }
 
 .video-frame-wrap{
