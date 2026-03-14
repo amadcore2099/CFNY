@@ -17,10 +17,37 @@ const videoData = {
   ],
 
   marketing: [
-    { year: '2025', title: 'Marketing Project One', subtitle: 'Social Tease', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
-    { year: '2024', title: 'Marketing Project Two', subtitle: 'Digital Trailer', youtubeUrl: 'https://www.youtube.com/watch?v=aqz-KE-bpKQ' },
-    { year: '2023', title: 'Marketing Project Three', subtitle: 'Launch Clip', youtubeUrl: 'https://www.youtube.com/watch?v=LXb3EKWsInQ' }
-  ],
+marketing: [
+
+  /* 2026 */
+  { year: '2026', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+
+  /* 2025 */
+  { year: '2025', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2025', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2025', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2025', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2025', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2025', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2025', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2025', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2025', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2025', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2025', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+
+  /* 2024 */
+  { year: '2024', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2024', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2024', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2024', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2024', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2024', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+  { year: '2024', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+
+  /* 2023 */
+  { year: '2023', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' }
+
+],
 
   label: [
     { year: '2025', title: 'Label Release One', subtitle: 'Official Video', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
