@@ -22,7 +22,7 @@
 
   /* background effects */
   --grid-size: 36px;
-  --grid-line-color: rgba(185,185,185,0.08);
+  --grid-line-color: rgba(185,185,185,0.035);
   --grid-opacity: 1;
 
   --grain-opacity: 0.08;
