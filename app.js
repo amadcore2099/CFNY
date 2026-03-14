@@ -17,8 +17,6 @@ const videoData = {
   ],
 
   marketing: [
-marketing: [
-
   /* 2026 */
   { year: '2026', title: 'Artist Name', subtitle: 'Campaign Title', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
 
