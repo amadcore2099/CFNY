@@ -6,10 +6,15 @@ const videoData = {
     { year: '2025', title: 'Russ', subtitle: 'Movin’ Album Promo', youtubeUrl: 'https://www.youtube.com/watch?v=ScMzIvxBSi4' },
     { year: '2024', title: 'Heems', subtitle: 'BUKAYO SAKA', youtubeUrl: 'https://www.youtube.com/watch?v=q5w12XA2Cmw' },
     { year: '2024', title: 'JJ ESKO FT ANNURAL KHALID', subtitle: 'MISTAKES', youtubeUrl: 'https://www.youtube.com/watch?v=cC47jPDezss' },
-    { year: '2024', title: 'LOE SHIMMY & CASH COBAIN', subtitle: 'Confession', youtubeUrl: 'https://www.youtube.com/watch?v=cC47jPDezss' },
+    { year: '2024', title: 'LOE SHIMMY & CASH COBAIN', subtitle: 'Confession', youtubeUrl: 'https://www.youtube.com/watch?v=iCCYnAwPcvI' },
     { year: '2024', title: 'SHEROZ & HENNY', subtitle: 'YAAR JIGRI"', youtubeUrl: 'https://www.youtube.com/watch?v=vrZiFXlE-Vg' },
     { year: '2024', title: 'HEEMS', subtitle: 'Rakhi', youtubeUrl: 'https://www.youtube.com/watch?v=vrZiFXlE-Vg' },
-    { year: '2023', title: 'RAF SAPERRA', subtitle: 'Ranjha', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
+    { year: '2023', title: 'RAF SAPERRA', subtitle: 'Ranjha', youtubeUrl: 'https://www.youtube.com/watch?v=MwFC7trjEXM' },
+    { year: '2023', title: 'SHEROZ, HENNY, G HOUR', subtitle: 'Ranjha', youtubeUrl: 'https://www.youtube.com/watch?v=-Zc135mSu7I' },
+    { year: '2023', title: 'Heems', subtitle: 'RAPS AT PUNJABI DELI', youtubeUrl: 'https://www.youtube.com/watch?v=0TzZYaM9IDM' },
+    { year: '2023', title: 'Heems', subtitle: 'RAPS IN JACKSON HEIGHTS', youtubeUrl: 'https://www.youtube.com/watch?v=Bg0gEo-xuOE' }
+
+    
   ],
   marketing: [
     { year: '2025', title: 'Marketing Project One', subtitle: 'Social Tease', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
