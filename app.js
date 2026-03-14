@@ -50,14 +50,14 @@ const videoData = {
   { year: '2024', title: 'KOAD (FREESTYLE)', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=UBj7HAy-ZqU' },
 
   /* 2023 */
-  { year: '2023', title: 'RAF SAPERRA (FREESTYLE)', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=DnBZ-QRVg0Q' }
+  { year: '2023', title: 'RAF SAPERRA (FREESTYLE)', subtitle: 'ON THE RADAR', youtubeUrl: 'https://www.youtube.com/watch?v=DnBZ-QRVg0Q' },
 
 ],
 
   label: [
     { year: '2025', title: 'Label Release One', subtitle: 'Official Video', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
     { year: '2024', title: 'Label Release Two', subtitle: 'Visualiser', youtubeUrl: 'https://www.youtube.com/watch?v=ScMzIvxBSi4' },
-    { year: '2023', title: 'Label Release Three', subtitle: 'Teaser Edit', youtubeUrl: 'https://www.youtube.com/watch?v=5qap5aO4i9A' }
+    { year: '2023', title: 'Label Release Three', subtitle: 'Teaser Edit', youtubeUrl: 'https://www.youtube.com/watch?v=5qap5aO4i9A' },\
   ]
 };
 
