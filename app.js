@@ -13,7 +13,7 @@ const videoData = {
     { year: '2023', title: 'SHEROZ, HENNY, G HOUR', subtitle: 'Ranjha', youtubeUrl: 'https://www.youtube.com/watch?v=-Zc135mSu7I' },
     { year: '2023', title: 'Heems', subtitle: 'RAPS AT PUNJABI DELI', youtubeUrl: 'https://www.youtube.com/watch?v=0TzZYaM9IDM' },
     { year: '2023', title: 'Heems', subtitle: 'RAPS IN JACKSON HEIGHTS', youtubeUrl: 'https://www.youtube.com/watch?v=Bg0gEo-xuOE' },
-    { year: '2022', title: 'ANGIE MARTINEZ IRL PODCAST', subtitle: 'Ashanti', youtubeUrl: 'https://www.youtube.com/watch?v=_j55M6SC8Pw'      
+    { year: '2022', title: 'ANGIE MARTINEZ IRL PODCAST', subtitle: 'Ashanti', youtubeUrl: 'https://www.youtube.com/watch?v=_j55M6SC8Pw' }      
   ],
   marketing: [
     { year: '2025', title: 'Marketing Project One', subtitle: 'Social Tease', youtubeUrl: 'https://www.youtube.com/watch?v=M7lc1UVf-VE' },
