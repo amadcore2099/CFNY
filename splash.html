@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capital Flight Space Tunnel Test</title>
+  <style>
+	html, body {
+	  margin: 0;
+	  height: 100%;
+	  overflow: hidden;
+	  background: #000;
+	  font-family: Arial, Helvetica, sans-serif;
+	}
+
+	* {
+	  box-sizing: border-box;
+	}
+
+	:root {
+	  --logo-width: 340px;
+	  --panel-shadow: 0 18px 50px rgba(0,0,0,.45);
+	  --wire: rgba(255,255,255,.18);
+	  --wire-soft: rgba(255,255,255,.08);
+	}
+
+	.scene {
+	  position: relative;
+	  width: 100vw;
+	  height: 100vh;
+	  overflow: hidden;
+	  background: #000;
+	}
+
+	/* =========================
+	   BG VIDEO
+	========================= */
+	.bg-video-wrap {
+	  position: absolute;
+	  inset: 0;
+	  overflow: hidden;
+	  z-index: 0;
+	  background: #000;
+	}
+
+	.bg-video-wrap iframe {
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  width: 177.77777778vh;
+	  height: 56.25vw;
+	  min-width: 100vw;
+	  min-height: 100vh;
+	  transform: translate(-50%, -50%) scale(1.15);
+	  pointer-events: none;
+	  border: 0;
+	  opacity: .42;
+	  filter: contrast(1.05) brightness(.55) saturate(.85);
+	}
+
+	/* =========================
+	   STAR / GRAIN LAYERS
+	========================= */
+	.space-overlay,
+	.space-overlay::before,
+	.space-overlay::after {
+	  position: absolute;
+	  inset: 0;
+	  content: "";
+	  pointer-events: none;
+	}
+
+	.space-overlay {
+	  z-index: 1;
+	  background:
+		radial-gradient(circle at 20% 30%, rgba(255,255,255,.95) 0 1px, transparent 2px),
+		radial-gradient(circle at 75% 20%, rgba(255,255,255,.9) 0 1.5px, transparent 3px),
+		radial-gradient(circle at 60% 70%, rgba(255,255,255,.8) 0 1px, transparent 2px),
+		radial-gradient(circle at 85% 60%, rgba(255,255,255,.85) 0 1px, transparent 2px),
+		radial-gradient(circle at 40% 85%, rgba(255,255,255,.8) 0 1.5px, transparent 3px);
+	  opacity: .7;
+	  mix-blend-mode: screen;
+	}
+
+	.space-overlay::before {
+	  background-image:
+		radial-gradient(rgba(255,255,255,.9) 0.9px, transparent 1px);
+	  background-size: 28px 28px;
+	  opacity: .28;
+	}
+
+	.space-overlay::after {
+	  background-image:
+		radial-gradient(rgba(255,255,255,.65) 0.6px, transparent 1px);
+	  background-size: 14px 14px;
+	  opacity: .18;
+	}
+
+	.vignette {
+	  position: absolute;
+	  inset: 0;
+	  z-index: 2;
+	  pointer-events: none;
+	  background:
+		radial-gradient(circle at center, transparent 38%, rgba(0,0,0,.15) 58%, rgba(0,0,0,.5) 100%);
+	}
+
+	/* =========================
+	   3D STAGE
+	========================= */
+	.tunnel-stage {
+	  position: absolute;
+	  inset: 0;
+	  z-index: 3;
+	  perspective: 1200px;
+	  perspective-origin: 50% 50%;
+	  transform-style: preserve-3d;
+	}
+
+	.wire-room {
+	  position: absolute;
+	  inset: 0;
+	  transform-style: preserve-3d;
+	}
+
+	.wire-grid {
+	  position: absolute;
+	  inset: 0;
+	  pointer-events: none;
+	  opacity: .55;
+	}
+
+	.wire-grid.floor {
+	  transform: rotateX(90deg) translateZ(-180px);
+	  transform-origin: center center;
+	  background-image:
+		linear-gradient(to right, var(--wire-soft) 1px, transparent 1px),
+		linear-gradient(to bottom, var(--wire-soft) 1px, transparent 1px);
+	  background-size: 80px 80px;
+	}
+
+	.wire-grid.ceiling {
+	  transform: rotateX(90deg) translateZ(180px);
+	  transform-origin: center center;
+	  background-image:
+		linear-gradient(to right, var(--wire-soft) 1px, transparent 1px),
+		linear-gradient(to bottom, var(--wire-soft) 1px, transparent 1px);
+	  background-size: 80px 80px;
+	}
+
+	.wire-grid.back {
+	  inset: 12% 14%;
+	  border: 1px solid var(--wire);
+	  background-image:
+		linear-gradient(to right, var(--wire-soft) 1px, transparent 1px),
+		linear-gradient(to bottom, var(--wire-soft) 1px, transparent 1px);
+	  background-size: 92px 92px;
+	}
+
+	.wire-frame {
+	  position: absolute;
+	  left: 50%;
+	  top: 50%;
+	  border: 1px solid rgba(255,255,255,.14);
+	  transform: translate(-50%, -50%);
+	  pointer-events: none;
+	}
+
+	.depth-lines {
+	  position: absolute;
+	  inset: 0;
+	  pointer-events: none;
+	}
+
+	.depth-lines span {
+	  position: absolute;
+	  background: rgba(255,255,255,.12);
+	  transform-origin: top left;
+	}
+
+	/* =========================
+	   FLOATING PANELS
+	========================= */
+	.media-field {
+	  position: absolute;
+	  inset: 0;
+	  transform-style: preserve-3d;
+	  z-index: 4;
+	}
+
+	.media-card {
+	  position: absolute;
+	  transform-style: preserve-3d;
+	  box-shadow: var(--panel-shadow);
+	  overflow: hidden;
+	  background: #050505;
+	  border: 1px solid rgba(255,255,255,.06);
+	  will-change: transform;
+	}
+
+	.media-card img,
+	.media-card video {
+	  display: block;
+	  width: 100%;
+	  height: 100%;
+	  object-fit: cover;
+	  pointer-events: none;
+	}
+
+	.media-card.video::after {
+	  content: "▶";
+	  position: absolute;
+	  right: 14px;
+	  top: 14px;
+	  width: 42px;
+	  height: 42px;
+	  display: grid;
+	  place-items: center;
+	  border-radius: 12px;
+	  background: rgba(255,0,0,.95);
+	  color: white;
+	  font-size: 20px;
+	  line-height: 1;
+	  box-shadow: 0 8px 25px rgba(0,0,0,.35);
+	}
+
+	/* =========================
+	   CENTER BRAND
+	========================= */
+	.center-brand {
+	  position: absolute;
+	  left: 50%;
+	  top: 50%;
+	  z-index: 6;
+	  transform: translate(-50%, -50%);
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  gap: 12px;
+	  text-align: center;
+	}
+
+	.center-brand img {
+	  width: min(var(--logo-width), 52vw);
+	  max-width: 100%;
+	  filter: drop-shadow(0 8px 18px rgba(0,0,0,.5));
+	}
+
+	.enter-btn {
+	  appearance: none;
+	  border: 0;
+	  border-radius: 999px;
+	  padding: 9px 28px 10px;
+	  background: #bfc2c8;
+	  color: #0c0c0c;
+	  font-weight: 800;
+	  letter-spacing: .08em;
+	  font-size: clamp(14px, 1.4vw, 18px);
+	  text-transform: uppercase;
+	  cursor: pointer;
+	  box-shadow: 0 8px 20px rgba(0,0,0,.35);
+	  transition: transform .18s ease, filter .18s ease;
+	}
+
+	.enter-btn:hover {
+	  transform: translateY(-1px) scale(1.02);
+	  filter: brightness(1.03);
+	}
+
+	/* =========================
+	   SOCIAL / ICONS
+	========================= */
+	.floating-icon {
+	  position: absolute;
+	  z-index: 6;
+	  filter: drop-shadow(0 12px 24px rgba(0,0,0,.45));
+	  user-select: none;
+	}
+
+	.floating-icon img {
+	  display: block;
+	  width: 100%;
+	  height: auto;
+	}
+
+	.icon-instagram {
+	  left: 25%;
+	  bottom: 26%;
+	  width: clamp(40px, 4vw, 72px);
+	  transform: rotate(-8deg);
+	}
+
+	.icon-youtube {
+	  right: 32%;
+	  top: 36%;
+	  width: clamp(52px, 4.5vw, 82px);
+	  transform: rotate(2deg);
+	}
+
+	.icon-envelope {
+	  top: 34%;
+	  left: 50%;
+	  width: clamp(34px, 3vw, 54px);
+	  transform: translateX(-50%) rotate(2deg);
+	}
+
+	.scanlines {
+	  position: absolute;
+	  inset: 0;
+	  z-index: 7;
+	  pointer-events: none;
+	  background:
+		linear-gradient(to bottom, rgba(255,255,255,.035), rgba(255,255,255,0) 2px);
+	  background-size: 100% 4px;
+	  opacity: .18;
+	  mix-blend-mode: soft-light;
+	}
+
+	.hud-rail {
+	  position: absolute;
+	  top: 0;
+	  right: 0;
+	  height: 100%;
+	  width: 34px;
+	  z-index: 7;
+	  color: rgba(255,255,255,.75);
+	  font-size: 12px;
+	  letter-spacing: .2em;
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  justify-content: center;
+	  writing-mode: vertical-rl;
+	  text-transform: uppercase;
+	  opacity: .7;
+	  pointer-events: none;
+	}
+
+	@media (max-width: 900px) {
+	  :root {
+		--logo-width: 240px;
+	  }
+
+	  .bg-video-wrap iframe {
+		transform: translate(-50%, -50%) scale(1.35);
+	  }
+
+	  .icon-instagram {
+		left: 15%;
+		bottom: 24%;
+	  }
+
+	  .icon-youtube {
+		right: 14%;
+		top: 38%;
+	  }
+
+	  .icon-envelope {
+		top: 31%;
+	  }
+	}
+  </style>
+</head>
+<body>
+  <div class="scene">
+	<!-- background youtube -->
+	<div class="bg-video-wrap">
+	  <iframe
+		src="https://www.youtube.com/embed/UNOmaFs6KaY?autoplay=1&mute=1&controls=0&loop=1&playlist=UNOmaFs6KaY&playsinline=1&modestbranding=1&rel=0"
+		title="Background video"
+		allow="autoplay; encrypted-media; picture-in-picture"
+		referrerpolicy="strict-origin-when-cross-origin"
+	  ></iframe>
+	</div>
+
+	<div class="space-overlay"></div>
+	<div class="vignette"></div>
+
+	<div class="tunnel-stage">
+	  <div class="wire-room">
+		<div class="wire-grid floor"></div>
+		<div class="wire-grid ceiling"></div>
+		<div class="wire-grid back"></div>
+
+		<div class="depth-lines" id="depthLines"></div>
+
+		<!-- nested tunnel frames -->
+		<div class="wire-frame" style="width:72vw;height:58vh;"></div>
+		<div class="wire-frame" style="width:56vw;height:44vh;"></div>
+		<div class="wire-frame" style="width:42vw;height:32vh;"></div>
+		<div class="wire-frame" style="width:30vw;height:22vh;"></div>
+		<div class="wire-frame" style="width:20vw;height:15vh;"></div>
+
+		<div class="media-field" id="mediaField"></div>
+	  </div>
+	</div>
+
+	<div class="floating-icon icon-envelope">
+	  <img src="https://raw.githubusercontent.com/amadcore2099/CFNY/refs/heads/main/images/CF_MAIL.png" alt="">
+	</div>
+
+	<div class="floating-icon icon-instagram">
+	  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="">
+	</div>
+
+	<div class="floating-icon icon-youtube">
+	  <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="">
+	</div>
+
+	<div class="center-brand">
+	  <img src="https://raw.githubusercontent.com/amadcore2099/CFNY/refs/heads/main/images/CF_LOGO_NEW.png" alt="Capital Flight">
+	  <button class="enter-btn">Enter</button>
+	</div>
+
+	<div class="scanlines"></div>
+	<div class="hud-rail">Capital Flight</div>
+  </div>
+
+  <script>
+	/* =========================
+	   EDIT THESE ITEMS
+	   type: "image" or "video"
+	   src: your file url
+	========================= */
+
+	const mediaItems = [
+	  {
+		type: "image",
+		src: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80",
+		x: 11, y: 23, z: 220, w: 360, h: 200, rx: 0, ry: 24, rz: -3
+	  },
+	  {
+		type: "image",
+		src: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1200&q=80",
+		x: 18, y: 51, z: 140, w: 250, h: 150, rx: 0, ry: 18, rz: 0
+	  },
+	  {
+		type: "image",
+		src: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1200&q=80",
+		x: 34, y: 16, z: 180, w: 260, h: 150, rx: -6, ry: 8, rz: -1
+	  },
+	  {
+		type: "image",
+		src: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1200&q=80",
+		x: 47, y: 78, z: 110, w: 280, h: 160, rx: 10, ry: -4, rz: -8
+	  },
+	  {
+		type: "image",
+		src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
+		x: 57, y: 24, z: 90, w: 180, h: 220, rx: 0, ry: -10, rz: 0
+	  },
+	  {
+		type: "image",
+		src: "https://images.unsplash.com/photo-1487180144351-b8472da7d491?auto=format&fit=crop&w=1200&q=80",
+		x: 64, y: 53, z: 160, w: 220, h: 130, rx: 0, ry: -18, rz: 0
+	  },
+	  {
+		type: "image",
+		src: "https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=1200&q=80",
+		x: 74, y: 20, z: 215, w: 250, h: 150, rx: 0, ry: -28, rz: 2
+	  },
+	  {
+		type: "image",
+		src: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=80",
+		x: 82, y: 61, z: 120, w: 260, h: 200, rx: 0, ry: -16, rz: 1
+	  },
+	  {
+		type: "image",
+		src: "https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2?auto=format&fit=crop&w=1200&q=80",
+		x: 50, y: 10, z: 140, w: 220, h: 120, rx: -12, ry: 0, rz: 0
+	  },
+	  {
+		type: "image",
+		src: "https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1200&q=80",
+		x: 54, y: 86, z: 160, w: 240, h: 140, rx: 18, ry: 0, rz: 0
+	  },
+
+	  /* test mp4 plane */
+	  {
+		type: "video",
+		src: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+		x: 70, y: 78, z: 85, w: 250, h: 145, rx: 12, ry: -18, rz: 0
+	  },
+	  {
+		type: "video",
+		src: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+		x: 29, y: 70, z: 70, w: 280, h: 150, rx: 14, ry: 22, rz: -4
+	  }
+	];
+
+	const field = document.getElementById("mediaField");
+
+	function renderMedia() {
+	  field.innerHTML = "";
+
+	  mediaItems.forEach((item, i) => {
+		const el = document.createElement("div");
+		el.className = `media-card ${item.type}`;
+		el.style.left = `${item.x}%`;
+		el.style.top = `${item.y}%`;
+		el.style.width = `${item.w}px`;
+		el.style.height = `${item.h}px`;
+		el.style.transform = `
+		  translate3d(-50%, -50%, ${item.z}px)
+		  rotateX(${item.rx}deg)
+		  rotateY(${item.ry}deg)
+		  rotateZ(${item.rz}deg)
+		`;
+
+		if (item.type === "video") {
+		  el.innerHTML = `
+			<video
+			  src="${item.src}"
+			  muted
+			  autoplay
+			  loop
+			  playsinline
+			  preload="metadata"
+			></video>
+		  `;
+		} else {
+		  el.innerHTML = `<img src="${item.src}" alt="">`;
+		}
+
+		field.appendChild(el);
+	  });
+	}
+
+	function buildDepthLines() {
+	  const wrap = document.getElementById("depthLines");
+	  const points = [
+		["12%", "12%", "50%", "50%"],
+		["88%", "12%", "50%", "50%"],
+		["12%", "88%", "50%", "50%"],
+		["88%", "88%", "50%", "50%"],
+		["24%", "6%", "50%", "50%"],
+		["94%", "26%", "50%", "50%"],
+		["6%", "70%", "50%", "50%"],
+		["82%", "94%", "50%", "50%"]
+	  ];
+
+	  points.forEach(([x1, y1, x2, y2]) => {
+		const line = document.createElement("span");
+		const ax = parseFloat(x1);
+		const ay = parseFloat(y1);
+		const bx = parseFloat(x2);
+		const by = parseFloat(y2);
+
+		const dx = bx - ax;
+		const dy = by - ay;
+		const len = Math.sqrt(dx * dx + dy * dy);
+		const ang = Math.atan2(dy, dx) * 180 / Math.PI;
+
+		line.style.left = x1;
+		line.style.top = y1;
+		line.style.width = `${len}%`;
+		line.style.height = `1px`;
+		line.style.transform = `rotate(${ang}deg)`;
+		wrap.appendChild(line);
+	  });
+	}
+
+	renderMedia();
+	buildDepthLines();
+
+	/* tiny drift */
+	let t = 0;
+	function animate() {
+	  t += 0.01;
+	  const cards = document.querySelectorAll(".media-card");
+	  cards.forEach((card, i) => {
+		const item = mediaItems[i];
+		const offset = Math.sin(t + i * 0.55) * 6;
+		const tilt = Math.cos(t * 0.8 + i * 0.4) * 1.5;
+
+		card.style.transform = `
+		  translate3d(-50%, -50%, ${item.z + offset}px)
+		  rotateX(${item.rx + tilt}deg)
+		  rotateY(${item.ry}deg)
+		  rotateZ(${item.rz}deg)
+		`;
+	  });
+
+	  requestAnimationFrame(animate);
+	}
+	animate();
+  </script>
+</body>
+</html>
