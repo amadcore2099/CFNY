@@ -762,6 +762,7 @@ body::after{
 .about-copy-wrap{
   position: relative;
   margin: 0 0 38px;
+  isolation: isolate;
 }
 
 .about-copy-mask{
@@ -781,6 +782,10 @@ body::after{
   letter-spacing: var(--about-body-letter);
   text-align: center;
   font-weight: 700;
+  -webkit-font-smoothing: antialiased;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .about-copy-base{
@@ -815,7 +820,11 @@ body::after{
   mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
-  will-change: transform, opacity;
+  -webkit-font-smoothing: antialiased;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: auto;
 }
 
 .about-stats{
