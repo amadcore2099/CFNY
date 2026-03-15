@@ -119,12 +119,12 @@ function bindCards() {
       openVideo(embed);
     };
 
-    card.addEventListener('touchstart', (e) => {
+    card.addEventListener('touchstart', () => {
       justTouched = true;
       openFromCard();
     }, { passive: true });
 
-    card.addEventListener('click', (e) => {
+    card.addEventListener('click', () => {
       if (justTouched) {
         justTouched = false;
         return;
@@ -149,6 +149,7 @@ function openVideo(embedUrl) {
     ></iframe>
   `;
 
+  frameWrap.classList.add('is-ready');
   lightbox.classList.add('is-open');
   lightbox.setAttribute('aria-hidden', 'false');
   document.body.classList.add('modal-open');
@@ -161,6 +162,7 @@ function closeVideo() {
   if (!lightbox || !frameWrap) return;
 
   frameWrap.innerHTML = '';
+  frameWrap.classList.remove('is-ready');
   lightbox.classList.remove('is-open');
   lightbox.setAttribute('aria-hidden', 'true');
   document.body.classList.remove('modal-open');
