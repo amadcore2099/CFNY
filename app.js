@@ -61,22 +61,24 @@ const pageConfig = {
   about: { title: 'ABOUT', intro: '' }
 };
 
-function getYouTubeId(url=''){
-  const m=url.match(/(?:v=|youtu\.be\/|shorts\/)([a-zA-Z0-9_-]{11})/);
-  return m?m[1]:'';
+let justTouched = false;
+
+function getYouTubeId(url = '') {
+  const m = url.match(/(?:v=|youtu\.be\/|shorts\/)([a-zA-Z0-9_-]{11})/);
+  return m ? m[1] : '';
 }
 
-function createCard(item){
-  const id=getYouTubeId(item.youtubeUrl);
-  if(!id)return '';
+function createCard(item) {
+  const id = getYouTubeId(item.youtubeUrl);
+  if (!id) return '';
 
-  const thumb=`https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
-  const embed=`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&playsinline=1&rel=0`;
+  const thumb = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+  const embed = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3`;
 
   return `
   <div class="project-card youtube-card" data-embed="${embed}">
     <div class="project-thumb">
-      <img src="${thumb}" loading="lazy">
+      <img src="${thumb}" loading="lazy" alt="${item.title}">
       <div class="project-overlay">
         <div class="play-button"><span class="play-icon">▶</span></div>
       </div>
@@ -88,77 +90,108 @@ function createCard(item){
   </div>`;
 }
 
-function renderPage(pageKey){
-  const items=videoData[pageKey]||[];
+function renderPage(pageKey) {
+  const items = videoData[pageKey] || [];
 
-  document.querySelectorAll('.archive-year').forEach(section=>{
-    const year=section.dataset.year;
-    const grid=section.querySelector('.project-grid');
-    if(!grid)return;
+  document.querySelectorAll('.archive-year').forEach(section => {
+    const year = section.dataset.year;
+    const grid = section.querySelector('.project-grid');
+    if (!grid) return;
 
-    const matches=items.filter(v=>v.year===year);
+    const matches = items.filter(v => v.year === year);
 
-    if(!matches.length){
-      section.style.display='none';
+    if (!matches.length) {
+      section.style.display = 'none';
       return;
     }
 
-    grid.innerHTML=matches.map(createCard).join('');
+    section.style.display = '';
+    grid.innerHTML = matches.map(createCard).join('');
   });
 
   bindCards();
 }
 
-function bindCards(){
-  document.querySelectorAll('.youtube-card').forEach(card=>{
-    card.addEventListener('click',()=>{
-      const embed=card.dataset.embed;
+function bindCards() {
+  document.querySelectorAll('.youtube-card').forEach(card => {
+    const openFromCard = () => {
+      const embed = card.dataset.embed;
       openVideo(embed);
+    };
+
+    card.addEventListener('touchstart', (e) => {
+      justTouched = true;
+      openFromCard();
+    }, { passive: true });
+
+    card.addEventListener('click', (e) => {
+      if (justTouched) {
+        justTouched = false;
+        return;
+      }
+      openFromCard();
     });
   });
 }
 
-function openVideo(embedUrl){
-  const lightbox=document.getElementById('videoLightbox');
-  const frameWrap=document.getElementById('videoFrameWrap');
+function openVideo(embedUrl) {
+  const lightbox = document.getElementById('videoLightbox');
+  const frameWrap = document.getElementById('videoFrameWrap');
 
-  frameWrap.innerHTML=`<iframe src="${embedUrl}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+  if (!lightbox || !frameWrap || !embedUrl) return;
+
+  frameWrap.innerHTML = `
+    <iframe
+      src="${embedUrl}"
+      allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+      allowfullscreen
+      playsinline
+    ></iframe>
+  `;
 
   lightbox.classList.add('is-open');
+  lightbox.setAttribute('aria-hidden', 'false');
   document.body.classList.add('modal-open');
 }
 
-function closeVideo(){
-  const lightbox=document.getElementById('videoLightbox');
-  const frameWrap=document.getElementById('videoFrameWrap');
+function closeVideo() {
+  const lightbox = document.getElementById('videoLightbox');
+  const frameWrap = document.getElementById('videoFrameWrap');
 
-  frameWrap.innerHTML='';
+  if (!lightbox || !frameWrap) return;
+
+  frameWrap.innerHTML = '';
   lightbox.classList.remove('is-open');
+  lightbox.setAttribute('aria-hidden', 'true');
   document.body.classList.remove('modal-open');
 }
 
-document.addEventListener('DOMContentLoaded',()=>{
+document.addEventListener('DOMContentLoaded', () => {
+  const currentPage = document.body.dataset.page || 'production';
 
-  const currentPage=document.body.dataset.page||'production';
+  const introTitle = document.querySelector('.intro-title');
+  const introCopy = document.querySelector('.intro-copy');
 
-  const introTitle=document.querySelector('.intro-title');
-  const introCopy=document.querySelector('.intro-copy');
+  const pageData = pageConfig[currentPage] || pageConfig.production;
 
-  const pageData=pageConfig[currentPage]||pageConfig.production;
+  if (introTitle) introTitle.textContent = pageData.title;
+  if (introCopy) introCopy.textContent = pageData.intro;
 
-  if(introTitle)introTitle.textContent=pageData.title;
-  if(introCopy)introCopy.textContent=pageData.intro;
+  if (['production', 'marketing', 'label'].includes(currentPage)) {
+    renderPage(currentPage);
+  }
 
-  renderPage(currentPage);
+  const close = document.getElementById('videoClose');
+  if (close) close.addEventListener('click', closeVideo);
 
-  const close=document.getElementById('videoClose');
-  if(close)close.addEventListener('click',closeVideo);
-
-  const lightbox=document.getElementById('videoLightbox');
-  if(lightbox){
-    lightbox.addEventListener('click',e=>{
-      if(e.target===lightbox)closeVideo();
+  const lightbox = document.getElementById('videoLightbox');
+  if (lightbox) {
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) closeVideo();
     });
   }
 
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeVideo();
+  });
 });
