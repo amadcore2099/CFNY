@@ -54,8 +54,8 @@
 
   /* nav controls */
   --nav-gap: 18px;
-  --nav-link-size: 18px;
-  --nav-letter-spacing: .12em;
+  --nav-link-size: 22px;
+  --nav-letter-spacing: .04em;
   --nav-opacity: .85;
 
   /* mobile menu */
@@ -245,6 +245,7 @@ body::after{
   text-transform: uppercase;
   opacity: var(--nav-opacity);
   transition: opacity var(--transition);
+  font-weight: 800;
 }
 
 .main-nav a:hover,
