@@ -168,12 +168,46 @@ function closeVideo() {
   document.body.classList.remove('modal-open');
 }
 
+function openMobileMenu() {
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  if (!menuToggle || !mobileMenu) return;
+
+  mobileMenu.classList.add('is-open');
+  mobileMenu.setAttribute('aria-hidden', 'false');
+  menuToggle.setAttribute('aria-expanded', 'true');
+  document.body.classList.add('modal-open');
+}
+
+function closeMobileMenu() {
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  if (!menuToggle || !mobileMenu) return;
+
+  mobileMenu.classList.remove('is-open');
+  mobileMenu.setAttribute('aria-hidden', 'true');
+  menuToggle.setAttribute('aria-expanded', 'false');
+  document.body.classList.remove('modal-open');
+}
+
+function updateAboutMask() {
+  const aboutCopyTop = document.getElementById('aboutCopyTop');
+  if (!aboutCopyTop) return;
+
+  const scrollTop = window.scrollY || window.pageYOffset;
+  const fade = Math.min(scrollTop / 220, 1);
+
+  aboutCopyTop.style.opacity = String(1 - fade * 0.9);
+  aboutCopyTop.style.transform = `translateY(${Math.min(scrollTop * 0.12, 24)}px)`;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const currentPage = document.body.dataset.page || 'production';
 
   const introTitle = document.querySelector('.intro-title');
   const introCopy = document.querySelector('.intro-copy');
-
   const pageData = pageConfig[currentPage] || pageConfig.production;
 
   if (introTitle) introTitle.textContent = pageData.title;
@@ -193,7 +227,38 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileMenuClose = document.getElementById('mobileMenuClose');
+  const mobileMenuBackdrop = document.getElementById('mobileMenuBackdrop');
+
+  if (menuToggle) {
+    menuToggle.addEventListener('click', () => {
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (mobileMenu?.classList.contains('is-open')) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    });
+  }
+
+  if (mobileMenuClose) {
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+  }
+
+  if (mobileMenuBackdrop) {
+    mobileMenuBackdrop.addEventListener('click', closeMobileMenu);
+  }
+
+  if (currentPage === 'about') {
+    updateAboutMask();
+    window.addEventListener('scroll', updateAboutMask, { passive: true });
+  }
+
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeVideo();
+    if (e.key === 'Escape') {
+      closeVideo();
+      closeMobileMenu();
+    }
   });
 });
