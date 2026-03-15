@@ -205,7 +205,7 @@ function updateAboutMask() {
   const fade = Math.min(scrollTop / 220, 1);
 
   aboutCopyTop.style.opacity = String(1 - fade * 0.9);
-  aboutCopyTop.style.transform = `translateY(${Math.min(scrollTop * 0.12, 24)}px)`;
+  aboutCopyTop.style.transform = 'translateY(0) translateZ(0)';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
