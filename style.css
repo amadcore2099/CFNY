@@ -1043,6 +1043,13 @@ body::after{
     grid-template-columns: 1fr;
   }
 
+  .project-card iframe,
+  .project-card video,
+  .project-card .project-thumb,
+  .project-card .project-overlay{
+    pointer-events: none;
+  }
+
   .video-lightbox{
     padding: 16px;
   }
