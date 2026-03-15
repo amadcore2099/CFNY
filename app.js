@@ -119,14 +119,19 @@ function bindCards() {
       openVideo(embed);
     };
 
-    card.addEventListener('touchstart', () => {
+    card.addEventListener('touchend', e => {
       justTouched = true;
+      e.preventDefault();
       openFromCard();
-    }, { passive: true });
 
-    card.addEventListener('click', () => {
-      if (justTouched) {
+      window.setTimeout(() => {
         justTouched = false;
+      }, 400);
+    }, { passive: false });
+
+    card.addEventListener('click', e => {
+      if (justTouched) {
+        e.preventDefault();
         return;
       }
       openFromCard();
