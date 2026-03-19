@@ -470,16 +470,38 @@ body::after{
 .project-card:hover .project-thumb img,
 .project-card:focus-visible .project-thumb img{
   transform: scale(1.04);
-  opacity: .82;
+  opacity: .42;
+  filter: brightness(0.55);
 }
 
 .project-info{
-  padding: 12px 12px 14px;
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
   text-align: center;
+  pointer-events: none;
+
+  opacity: 0;
+  background: transparent;
+
+  transition: opacity var(--transition);
+}
+
+.project-card:hover .project-info,
+.project-card:focus-visible .project-info{
+  opacity: 1;
 }
 
 .project-title{
   margin: 0;
+  color: #fff;
   font-size: 14px;
   line-height: 1.4;
   letter-spacing: .08em;
@@ -488,7 +510,7 @@ body::after{
 
 .project-sub{
   margin: 5px 0 0;
-  color: var(--muted);
+  color: rgba(255,255,255,0.76);
   font-size: 12px;
   line-height: 1.4;
   letter-spacing: .08em;
@@ -519,23 +541,26 @@ body::after{
 
 .project-card:hover .project-overlay,
 .project-card:focus-visible .project-overlay{
-  background: rgba(0,0,0,0.22);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+  background: rgba(0,0,0,0.28);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
+
+
+/* ==================================================
+   PLAY BUTTON (minimal / ghosted)
+================================================== */
 
 .play-button{
   display: grid;
   place-items: center;
-  width: var(--play-size);
-  height: var(--play-size);
-  border-radius: var(--play-radius);
-  background: var(--play-bg);
-  border: var(--play-border);
-  box-shadow: var(--play-shadow);
+
+  background: transparent;
+  border: none;
+  box-shadow: none;
 
   opacity: 0;
-  transform: scale(.88);
+  transform: scale(0.9);
 
   transition:
     opacity var(--transition),
@@ -544,15 +569,91 @@ body::after{
 
 .project-card:hover .play-button,
 .project-card:focus-visible .play-button{
-  opacity: 1;
-  transform: scale(1.05);
+  opacity: 0.35;
+  transform: scale(1.12);
 }
 
 .play-icon{
-  color: var(--play-icon-color);
-  font-size: var(--play-icon-size);
+  color: rgba(255,255,255,0.7);
+  font-size: 36px;
   line-height: 1;
   transform: translateX(2px);
+
+  transition:
+    opacity var(--transition),
+    transform var(--transition);
+}
+
+
+/* ==================================================
+   TEXT (large / dynamic)
+================================================== */
+
+/* ==================================================
+   TEXT (refined balance)
+================================================== */
+
+.project-title{
+  margin: 0;
+
+  font-size: clamp(18px, 2.6vw, 34px);
+  line-height: 1.08;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+
+  color: rgba(255,255,255,0.92);
+
+  transform: translateY(14px);
+  opacity: 0;
+
+  transition:
+    transform var(--transition),
+    opacity var(--transition);
+
+  transition-delay: 40ms;
+}
+
+.project-sub{
+  margin: 10px 0 0;
+
+  font-size: clamp(13px, 1.2vw, 16px);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+
+  color: #ffffff; /* now fully white */
+
+  transform: translateY(14px);
+  opacity: 0;
+
+  transition:
+    transform var(--transition),
+    opacity var(--transition);
+
+  transition-delay: 90ms;
+}
+
+
+/* reveal */
+
+.project-card:hover .project-title,
+.project-card:focus-visible .project-title{
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.project-card:hover .project-sub,
+.project-card:focus-visible .project-sub{
+  transform: translateY(0);
+  opacity: 1;
+}pacity: 1;
+}
+
+.play-icon{
+  color: rgba(255,255,255,0.85);
+  font-size: 34px;
+  line-height: 1;
+  transform: translateX(2px);
+  transition: opacity var(--transition);
 }
 
 
