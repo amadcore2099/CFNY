@@ -905,14 +905,14 @@ body::after{
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 58px;
-  border: 1px solid transparent;
-  color: rgba(255,255,255,0.92);
-  font-size: 17px;
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
-  text-align: center;
+
+  /* kill all box visuals */
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  padding: 0;
+  min-height: auto;
 }
 
 .partner-logo img{
@@ -922,8 +922,9 @@ body::after{
   width: auto;
   height: auto;
   object-fit: contain;
-  filter: grayscale(1) brightness(1.2);
-  opacity: 0.95;
+
+  filter: none;
+  opacity: 1;
 }
 
 .partner-logo.placeholder{
