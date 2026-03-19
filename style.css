@@ -878,7 +878,7 @@ body::after{
 }
 
 .partners{
-  padding-top: 4px;
+  padding-top: 8px;
 }
 
 .partners-title{
@@ -894,28 +894,27 @@ body::after{
 .partners-grid{
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 24px;
-  align-items: center;
+  gap: 10px;
+  align-items: stretch;
 }
 
 .partner-logo{
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100px;
-  padding: 12px;
-  background: none;
-  border: none;
-  box-shadow: none;
+  min-height: 290px;
+  padding: 30px 26px;
+  background: rgba(255,255,255,0.01);
 }
 
 .partner-logo img{
   display: block;
-  width: auto;
-  height: auto;
-  max-width: 180px;
-  max-height: 56px;
+  width: auto !important;
+  height: auto !important;
+  max-width: 82%;
+  max-height: 42%;
   object-fit: contain;
+  object-position: center;
 }
 
 .contact-copy{
@@ -1012,6 +1011,21 @@ body::after{
     grid-template-columns: 1fr;
     gap: 28px;
   }
+
+  .partners-grid{
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .partner-logo{
+    min-height: 240px;
+    padding: 24px 20px;
+  }
+
+  .partner-logo img{
+    max-width: 84%;
+    max-height: 40%;
+  }
 }
 
 @media (max-width: 760px){
@@ -1065,17 +1079,19 @@ body::after{
 
   .partners-grid{
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
+    gap: 10px;
   }
 
   .partner-logo{
-    min-height: 88px;
-    padding: 10px;
+    min-height: 190px;
+    padding: 22px 18px;
   }
 
   .partner-logo img{
-    max-width: 150px;
-    max-height: 44px;
+    width: auto !important;
+    height: auto !important;
+    max-width: 86%;
+    max-height: 38%;
   }
 
   .project-card iframe,
@@ -1104,5 +1120,15 @@ body::after{
 @media (max-width: 560px){
   .partners-grid{
     grid-template-columns: 1fr;
+  }
+
+  .partner-logo{
+    min-height: 160px;
+    padding: 18px 16px;
+  }
+
+  .partner-logo img{
+    max-width: 88%;
+    max-height: 36%;
   }
 }
