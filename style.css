@@ -378,6 +378,7 @@ body::after{
 
 .intro-title{
   margin: 0;
+  display: none;
   font-size: clamp(30px, 5vw, 54px);
   line-height: .96;
   letter-spacing: .02em;
