@@ -885,7 +885,7 @@ body::after{
   margin: 0 0 24px;
   text-align: center;
   color: var(--text);
-  font-size: 12px;
+  font-size: 20px;
   font-weight: 900;
   letter-spacing: 0.04em;
   text-transform: uppercase;
