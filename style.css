@@ -81,9 +81,6 @@
   --stat-number-size: 28px;
   --stat-label-size: 10px;
 
-  --partner-logo-height: 34px;
-  --partner-gap: 18px;
-
   --soft: rgba(255,255,255,0.44);
 }
 
@@ -885,19 +882,19 @@ body::after{
 }
 
 .partners-title{
-  margin: 0 0 20px;
+  margin: 0 0 24px;
   text-align: center;
   color: var(--text);
   font-size: 12px;
   font-weight: 900;
-  letter-spacing: 0;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
 .partners-grid{
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--partner-gap);
+  gap: 24px;
   align-items: center;
 }
 
@@ -905,35 +902,20 @@ body::after{
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* kill all box visuals */
-  background: none !important;
-  border: none !important;
-  box-shadow: none !important;
-
-  padding: 0;
-  min-height: auto;
+  min-height: 100px;
+  padding: 12px;
+  background: none;
+  border: none;
+  box-shadow: none;
 }
 
 .partner-logo img{
   display: block;
-  max-width: 100%;
-  max-height: var(--partner-logo-height);
   width: auto;
   height: auto;
+  max-width: 180px;
+  max-height: 56px;
   object-fit: contain;
-
-  filter: none;
-  opacity: 1;
-}
-
-.partner-logo.placeholder{
-  min-height: 64px;
-  padding: 6px;
-  border-color: var(--line);
-  background: rgba(255,255,255,0.02);
-  font-size: 15px;
-  line-height: 1;
 }
 
 .contact-copy{
@@ -1051,8 +1033,6 @@ body::after{
     --about-body-size: clamp(26px, 7.2vw, 40px);
     --about-body-line: 1.06;
     --stat-number-size: 24px;
-    --partner-gap: 12px;
-    --partner-logo-height: 28px;
   }
 
   .header-inner{
@@ -1085,6 +1065,17 @@ body::after{
 
   .partners-grid{
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .partner-logo{
+    min-height: 88px;
+    padding: 10px;
+  }
+
+  .partner-logo img{
+    max-width: 150px;
+    max-height: 44px;
   }
 
   .project-card iframe,
@@ -1107,10 +1098,6 @@ body::after{
     right: -4px;
     width: 42px;
     height: 42px;
-  }
-
-  .partner-logo{
-    font-size: 14px;
   }
 }
 
