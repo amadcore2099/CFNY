@@ -13,7 +13,7 @@
 
   /* background effects */
   --grid-size: 36px;
-  --grid-line-color: rgba(185,185,185,0.035);
+  --grid-line-color: rgba(255, 255, 255, 0.035);
   --grid-opacity: 1;
 
   --grain-opacity: 0.08;
@@ -26,6 +26,7 @@
   --card-border: rgba(255,255,255,0.10);
   --card-hover-border: rgba(255,255,255,0.18);
   --card-thumb-bg: rgba(255,255,255,0.04);
+  --thumb-radius: 14px;
 
   /* header controls */
   --header-bg: rgba(5,5,5,0.78);
@@ -45,7 +46,7 @@
 
   /* nav controls */
   --nav-gap: 18px;
-  --nav-link-size: 12px;
+  --nav-link-size: 18px;
   --nav-letter-spacing: .04em;
   --nav-opacity: .85;
 
@@ -400,12 +401,11 @@ body::after{
 
 .archive-year{
   padding: 40px 0 10px;
-  border-top: 1px solid var(--line);
+  border-top: none;
 }
 
 .archive-year:first-of-type{
   padding-top: 12px;
-  border-top: 0;
 }
 
 .year-label{
@@ -427,14 +427,15 @@ body::after{
 
 .project-card{
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   cursor: pointer;
 
-  background: var(--card-bg);
+  background: transparent;
   border: none;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 
   transition:
     transform var(--transition),
@@ -445,9 +446,7 @@ body::after{
 
 .project-card:hover,
 .project-card:focus-visible{
-  transform: translateY(-4px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.34);
-  background: rgba(255,255,255,0.05);
+  transform: none;
 }
 
 .project-thumb{
@@ -455,70 +454,87 @@ body::after{
   aspect-ratio: 16 / 10;
   overflow: hidden;
   background: var(--card-thumb-bg);
+  border-radius: var(--thumb-radius);
+  isolation: isolate;
 }
 
-.project-thumb::after{
-  content: "";
+.project-thumb img,
+.project-thumb video,
+.project-thumb iframe{
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(
-      to top,
-      rgba(0,0,0,0.36) 0%,
-      rgba(0,0,0,0.08) 38%,
-      rgba(0,0,0,0) 70%
-    );
-  opacity: 0;
-  transition: opacity var(--transition);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.project-thumb img{
   width: 100%;
   height: 100%;
+  display: block;
   object-fit: cover;
+  border-radius: inherit;
   transition:
     transform .45s ease,
     opacity var(--transition),
     filter var(--transition);
 }
 
+.project-thumb{
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--card-thumb-bg);
+  border-radius: var(--thumb-radius);
+  isolation: isolate;
+}
+
+.project-thumb img,
+.project-thumb video,
+.project-thumb iframe{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: inherit;
+
+  transform: scale(1.06); /* crops out YouTube edge junk */
+  transform-origin: center center;
+
+  transition:
+    transform .45s ease,
+    opacity var(--transition),
+    filter var(--transition);
+}
+
+.project-thumb::after{
+  display: none;
+}
+
 .project-card:hover .project-thumb::after,
 .project-card:focus-visible .project-thumb::after{
-  opacity: 1;
+  opacity: 0;
 }
 
 .project-card:hover .project-thumb img,
-.project-card:focus-visible .project-thumb img{
-  transform: scale(1.04);
-  opacity: .5;
-  filter: brightness(0.62);
+.project-card:hover .project-thumb video,
+.project-card:hover .project-thumb iframe,
+.project-card:focus-visible .project-thumb img,
+.project-card:focus-visible .project-thumb video,
+.project-card:focus-visible .project-thumb iframe{
+  transform: scale(1.06);
+  opacity: 1;
+  filter: none;
 }
 
 .project-info{
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  padding: 20px;
-  text-align: center;
+  position: relative;
+  inset: auto;
+  z-index: auto;
+  display: block;
+  padding: 14px 0 0;
+  text-align: left;
   pointer-events: none;
-
-  opacity: 0;
-  background: transparent;
-
-  transition: opacity var(--transition);
-}
-
-.project-card:hover .project-info,
-.project-card:focus-visible .project-info{
   opacity: 1;
+  background: transparent;
+  transition: none;
 }
 
 
@@ -527,27 +543,7 @@ body::after{
 ================================================== */
 
 .project-overlay{
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  pointer-events: none;
-
-  background: rgba(0,0,0,0);
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
-
-  transition:
-    background var(--transition),
-    backdrop-filter var(--transition),
-    -webkit-backdrop-filter var(--transition);
-}
-
-.project-card:hover .project-overlay,
-.project-card:focus-visible .project-overlay{
-  background: rgba(0,0,0,0.22);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  display: none;
 }
 
 
@@ -557,52 +553,29 @@ body::after{
 
 .project-title{
   margin: 0;
-
-  font-size: clamp(18px, 2.6vw, 34px);
-  line-height: 1.08;
-  letter-spacing: -0.005em;
+  font-size: clamp(14px, 1.2vw, 17px);
+  line-height: 1.1;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
-
   color: rgba(255,255,255,0.92);
-
-  transform: translateY(14px);
-  opacity: 0;
-
-  transition:
-    transform var(--transition),
-    opacity var(--transition);
-
-  transition-delay: 40ms;
+  font-weight: 700;
 }
 
 .project-sub{
-  margin: 10px 0 0;
-
-  font-size: clamp(13px, 1.2vw, 16px);
-  letter-spacing: .12em;
-  text-transform: uppercase;
-
-  color: #ffffff;
-
-  transform: translateY(14px);
-  opacity: 0;
-
-  transition:
-    transform var(--transition),
-    opacity var(--transition);
-
-  transition-delay: 90ms;
+  margin: 4px 0 0;
+  font-size: 13px;
+  line-height: 1.35;
+  letter-spacing: 0em;
+  color: rgba(255,255,255,0.55);
+  text-transform: none;
+  font-weight: 600;
 }
 
 .project-card:hover .project-title,
-.project-card:focus-visible .project-title{
-  transform: translateY(0);
-  opacity: 1;
-}
-
+.project-card:focus-visible .project-title,
 .project-card:hover .project-sub,
 .project-card:focus-visible .project-sub{
-  transform: translateY(0);
+  transform: none;
   opacity: 1;
 }
 
@@ -900,14 +873,14 @@ body::after{
 }
 
 .partner-logo{
-  padding: 12px; /* tighter */
+  padding: 12px;
 }
 
 .partner-logo img{
   width: 100% !important;
   height: 100% !important;
   object-fit: contain;
-  transform: scale(1.1); /* subtle boost */
+  transform: scale(1.1);
 }
 
 .contact-copy{
@@ -1089,8 +1062,7 @@ body::after{
 
   .project-card iframe,
   .project-card video,
-  .project-card .project-thumb,
-  .project-card .project-overlay{
+  .project-card .project-thumb{
     pointer-events: none;
   }
 
