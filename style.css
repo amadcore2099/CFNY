@@ -1053,6 +1053,97 @@ body::after{
   padding-top: 110px;
 }
 
+
+/* ==================================================
+   CONTACT
+================================================== */
+
+.contact-shell{
+max-width: 680px;
+margin: 80px auto 0; /* pushes it down */
+
+.contact-intro{
+  margin-bottom: 30px;
+}
+
+.contact-intro h1{
+  margin: 0 0 10px;
+  font-size: clamp(32px, 5vw, 54px);
+  text-transform: uppercase;
+}
+
+.contact-intro p{
+  margin: 0;
+  color: var(--muted);
+  font-size: 19px;
+  line-height: 1.6;
+}
+
+/* FORM */
+
+.contact-form{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row{
+  width: 100%;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select{
+  width: 100%;
+  padding: 14px 14px;
+
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--text);
+
+  font: inherit;
+  font-size: 14px;
+
+  transition: border-color var(--transition), background var(--transition);
+}
+
+.contact-form textarea{
+  min-height: 140px;
+  resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-form select:focus{
+  outline: none;
+  border-color: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.02);
+}
+
+/* BUTTON */
+
+.form-submit{
+  margin-top: 8px;
+  padding: 14px;
+
+  border: 1px solid rgba(255,255,255,0.2);
+  background: #000;
+  color: #fff;
+
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition: background var(--transition), transform var(--transition);
+}
+
+.form-submit:hover{
+  background: #111;
+  transform: translateY(-1px);
+}
+
 /* ==================================================
    RESPONSIVE
 ================================================== */
