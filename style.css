@@ -192,12 +192,14 @@ body::after{
 ================================================== */
 
 .site-header{
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: var(--header-z);
-  background: var(--header-bg);
-  backdrop-filter: blur(var(--header-blur));
-  border-bottom: 1px solid var(--header-border);
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  background: #000; /* solid black */
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
 .header-inner{
@@ -1047,6 +1049,9 @@ body::after{
   text-transform: uppercase;
 }
 
+.page{
+  padding-top: 110px;
+}
 
 /* ==================================================
    RESPONSIVE
