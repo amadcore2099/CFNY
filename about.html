@@ -4,11 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Capital Flight — About</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body data-page="about">
 
   <!-- HEADER -->
@@ -85,18 +87,7 @@
         </figure>
 
         <section class="about-copy-wrap" aria-label="About text">
-          <div class="about-copy-mask" id="aboutCopyMask"></div>
-
-          <p class="about-copy about-copy-base">
-            Capital Flight is a New York-based creative agency and record label founded by
-            director and producer Saad Mehta. We deliver production, marketing, and label
-            services for artists and brands pushing culture forward. Bridging East and West,
-            our work has driven 500+ million impressions across major platforms. We focus on
-            hard results, real growth, and long-term impact, building movements that travel,
-            not moments that fade.
-          </p>
-
-          <p class="about-copy about-copy-top" id="aboutCopyTop" aria-hidden="true">
+          <p class="about-copy">
             Capital Flight is a New York-based creative agency and record label founded by
             director and producer Saad Mehta. We deliver production, marketing, and label
             services for artists and brands pushing culture forward. Bridging East and West,
@@ -124,31 +115,90 @@
         </div>
       </section>
 
+      <!-- PARTNERS MARQUEE -->
       <section class="partners" aria-label="Partners">
         <h2 class="partners-title">Our Partners</h2>
 
-        <div class="partners-grid">
-          <div class="partner-logo">
-            <img src="https://raw.githubusercontent.com/amadcore2099/CFNY/refs/heads/main/images/RED%20BULL%20LOGO.png" alt="Red Bull">
-          </div>
+        <div class="partners-marquee">
+          <div class="partners-track">
 
-          <div class="partner-logo">
-            <img src="https://raw.githubusercontent.com/amadcore2099/CFNY/refs/heads/main/images/EMPIRE%20LOGO.png" alt="Empire">
-          </div>
+            <div class="partner-logo">
+              <img src="https://raw.githubusercontent.com/amadcore2099/CFNY/refs/heads/main/images/RED%20BULL%20LOGO.png" alt="Red Bull">
+            </div>
+            <div class="partner-logo">
+              <img src="https://raw.githubusercontent.com/amadcore2099/CFNY/refs/heads/main/images/EMPIRE%20LOGO.png" alt="Empire">
+            </div>
+            <div class="partner-logo">
+              <img src="https://raw.githubusercontent.com/amadcore2099/CFNY/refs/heads/main/images/BET%20LOGO%20NEW.png" alt="BET">
+            </div>
+            <div class="partner-logo">
+              <img src="https://raw.githubusercontent.com/amadcore2099/CFNY/refs/heads/main/images/RCA%20LOGO.png" alt="RCA">
+            </div>
 
-          <div class="partner-logo">
-            <img src="https://raw.githubusercontent.com/amadcore2099/CFNY/refs/heads/main/images/BET%20LOGO%20NEW.png" alt="BET">
-          </div>
+            <!-- duplicate -->
+            <div class="partner-logo" aria-hidden="true">
+              <img src="https://raw.githubusercontent.com/amadcore2099/CFNY/refs/heads/main/images/RED%20BULL%20LOGO.png" alt="">
+            </div>
+            <div class="partner-logo" aria-hidden="true">
+              <img src="https://raw.githubusercontent.com/amadcore2099/CFNY/refs/heads/main/images/EMPIRE%20LOGO.png" alt="">
+            </div>
+            <div class="partner-logo" aria-hidden="true">
+              <img src="https://raw.githubusercontent.com/amadcore2099/CFNY/refs/heads/main/images/BET%20LOGO%20NEW.png" alt="">
+            </div>
+            <div class="partner-logo" aria-hidden="true">
+              <img src="https://raw.githubusercontent.com/amadcore2099/CFNY/refs/heads/main/images/RCA%20LOGO.png" alt="">
+            </div>
 
-          <div class="partner-logo">
-            <img src="https://raw.githubusercontent.com/amadcore2099/CFNY/refs/heads/main/images/RCA%20LOGO.png" alt="RCA">
           </div>
         </div>
       </section>
     </section>
   </main>
 
-  <footer class="footer">Capital Flight — About</footer>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+
+      <div class="footer-copy">
+        © Capital Flight New York
+      </div>
+
+      <div class="footer-socials">
+
+        <a href="https://instagram.com/" target="_blank" aria-label="Instagram">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6" fill="none"/>
+            <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6" fill="none"/>
+            <circle cx="17.2" cy="6.8" r="1.2" fill="currentColor"/>
+          </svg>
+        </a>
+
+        <a href="https://youtube.com/" target="_blank" aria-label="YouTube">
+          <svg viewBox="0 0 24 24">
+            <rect x="2.5" y="6" width="19" height="12" rx="3" stroke="currentColor" stroke-width="1.6" fill="none"/>
+            <polygon points="10,9 16,12 10,15" fill="currentColor"/>
+          </svg>
+        </a>
+
+        <a href="https://linkedin.com/" target="_blank" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6" fill="none"/>
+            <rect x="6.5" y="10" width="2.5" height="7" fill="currentColor"/>
+            <circle cx="7.75" cy="7.5" r="1.3" fill="currentColor"/>
+            <path d="M12 10h2.2v1.2c.5-.8 1.4-1.4 2.8-1.4 2 0 3 1.2 3 3.5V17h-2.6v-3.3c0-1-.3-1.7-1.3-1.7s-1.6.7-1.6 1.7V17H12z" fill="currentColor"/>
+          </svg>
+        </a>
+
+        <a href="mailto:info@capitalflight.com" aria-label="Email">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="5" width="18" height="14" rx="2.5" stroke="currentColor" stroke-width="1.6" fill="none"/>
+            <path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.6" fill="none"/>
+          </svg>
+        </a>
+
+      </div>
+    </div>
+  </footer>
 
   <script src="app.js"></script>
 </body>
